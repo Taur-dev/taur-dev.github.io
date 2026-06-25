@@ -4,21 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Taur Studios — Private apps for the things you care about</title>
-  <meta name="description" content="Taur Studios makes private apps that keep your data on your device — no accounts, no ads, no tracking. Equine Companion, Flock Companion, and more." />
+  <meta name="description" content="Taur Studios makes private apps that keep your data on your device — no accounts, no ads, no tracking. Equine Companion, Flock Companion, Latent Space, and more." />
 
   <!-- Open Graph (for nice link previews when shared) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Taur Studios" />
   <meta property="og:description" content="Private apps that keep your data on your device — no accounts, no ads, no tracking." />
   <meta property="og:url" content="https://taur-dev.github.io/" />
+  <meta property="og:image" content="https://taur-dev.github.io/icons/equine.png" />
+  <meta name="theme-color" content="#1C1A17" />
 
   <!--
   ============================================================
   Equine & Flock Companion are both live on the App Store and Google Play.
-  Each has a full landing page: /equine/ and /flock/ (linked from its card).
-  Assets: /icons/*.png, /screens/*.webp (Equine hub strip),
-  and /equine/screens/, /flock/screens/ for the landing pages.
-  Keep these folders together when publishing to GitHub Pages.
+  Each has a full landing page: /equine/ and /flock/ (cards link to them).
+  Latent Space lives at /latent-space/; the gallery here uses optimized
+  copies in /latent/. Assets: /icons/*.png, /equine/screens/, /flock/screens/,
+  /latent/*.webp — keep these folders together when publishing.
   ============================================================
   -->
 
@@ -35,275 +37,341 @@
       --text:      #F5F0E8;
       --muted:     #A89880;
       --dim:       #6B6058;
+      --maxw:      1080px;
     }
 
+    html { scroll-behavior: smooth; }
     body {
-      background: radial-gradient(circle at 50% 0%, #232019 0%, var(--bg) 60%);
+      background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2.5rem 1.25rem 2rem;
-      line-height: 1.4;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
+    a { color: inherit; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
 
-    /* ---- Header / monogram ---- */
+    /* ---- Hero ---- */
+    .hero { position: relative; overflow: hidden; text-align: center; padding: 4rem 0 2.6rem; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(60% 60% at 50% -5%, rgba(192,154,91,0.18) 0%, transparent 62%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; display: flex; flex-direction: column; align-items: center; }
     .monogram {
-      width: 96px;
-      height: 96px;
-      border-radius: 24px;
+      width: 92px; height: 92px; border-radius: 23px;
       background: radial-gradient(circle at 50% 40%, #2e2a24 0%, #181613 100%);
       border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.1rem;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; box-shadow: 0 8px 28px rgba(0,0,0,0.5);
     }
     .monogram span {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-weight: 700;
-      font-size: 2.9rem;
-      letter-spacing: 0.02em;
+      font-family: Georgia, 'Times New Roman', serif; font-weight: 700;
+      font-size: 2.8rem; letter-spacing: 0.02em;
       background: linear-gradient(180deg, #FAE9A5 0%, #E6C760 30%, #D0A444 55%, #A8782C 80%, #7E521E 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero h1 {
+      font-size: 2.6rem; line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 0.7rem;
+    }
+    .hero h1 .accent { color: var(--gold); }
+    .tagline { color: var(--muted); font-size: 1.1rem; max-width: 540px; margin-bottom: 1.4rem; }
+    .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+    .chip {
+      font-size: 0.76rem; font-weight: 600; color: var(--gold-lt);
+      border: 1px solid var(--border); border-radius: 999px; padding: 0.32rem 0.8rem;
+      background: rgba(192,154,91,0.06);
     }
 
-    h1 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.03em;
-      margin-bottom: 0.4rem;
-    }
-    .tagline {
-      color: var(--muted);
-      font-size: 0.92rem;
-      text-align: center;
-      margin-bottom: 2.25rem;
-      max-width: 340px;
-    }
-    .tagline strong { color: var(--gold-lt); font-weight: 600; }
+    /* ---- Section scaffolding ---- */
+    section { padding: 2.6rem 0; }
+    .section-head { text-align: center; max-width: 620px; margin: 0 auto 1.8rem; }
+    .section-head h2 { font-size: 1.7rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+    .section-head p { color: var(--muted); font-size: 1rem; }
 
-    /* ---- App list ---- */
-    .apps {
-      width: 100%;
-      max-width: 380px;
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
+    /* ---- App grid ---- */
+    .apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 
     .app {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.2rem 1.25rem;
+      border-radius: 18px;
+      padding: 1.4rem 1.45rem;
+      display: flex; flex-direction: column;
       transition: border-color 0.15s, background 0.15s;
     }
     .app:hover { border-color: var(--gold); background: var(--bg-hover); }
+    .app.full { grid-column: 1 / -1; }
 
-    .app-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.15rem; }
+    .app-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.2rem; }
     .app-icon {
-      width: 52px; height: 52px; border-radius: 13px; flex-shrink: 0;
+      width: 54px; height: 54px; border-radius: 14px; flex-shrink: 0;
       object-fit: cover; border: 1px solid var(--border);
       box-shadow: 0 3px 10px rgba(0,0,0,0.4);
     }
     .app-icon.fallback {
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.7rem;
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
       background: radial-gradient(circle at 50% 40%, #2e2a24 0%, #181613 100%);
     }
-    .app-name { font-weight: 700; font-size: 1.08rem; }
+    .app-name { font-weight: 700; font-size: 1.18rem; }
     .badge {
-      font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em;
+      font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.06em;
       color: var(--gold-lt); border: 1px solid var(--border);
-      padding: 0.12rem 0.45rem; border-radius: 999px; margin-left: auto;
-      white-space: nowrap;
+      padding: 0.16rem 0.5rem; border-radius: 999px; margin-left: auto; white-space: nowrap;
     }
-    .badge.beta { color: #8FB98F; }
     .badge.soon { color: var(--dim); }
 
-    .app-desc { color: var(--muted); font-size: 0.86rem; margin: 0.35rem 0 0.9rem; }
+    .app-desc { color: var(--muted); font-size: 0.92rem; margin: 0.45rem 0 1rem; }
 
-    /* horizontal screenshot strip */
+    /* screenshot strip */
     .shots {
-      display: flex; gap: 0.55rem; overflow-x: auto; padding-bottom: 0.5rem;
-      margin: 0 0 0.95rem; -webkit-overflow-scrolling: touch;
+      display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.5rem;
+      margin: 0 0 1rem; -webkit-overflow-scrolling: touch;
       scrollbar-width: thin; scrollbar-color: var(--border) transparent;
     }
     .shots::-webkit-scrollbar { height: 5px; }
     .shots::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
     .shots img {
-      height: 200px; border-radius: 10px; border: 1px solid var(--border);
-      flex-shrink: 0; background: #181613;
+      height: 210px; border-radius: 12px; border: 1px solid var(--border);
+      flex-shrink: 0; background: #100E0C;
     }
 
-    .store-row { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .store-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; }
     .store-btn {
-      flex: 1 1 0;
-      min-width: 120px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-      background: #211E1A;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.6rem 0.75rem;
+      flex: 1 1 0; min-width: 130px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      text-decoration: none; font-size: 0.86rem; font-weight: 600; color: var(--text);
+      background: #211E1A; border: 1px solid var(--border); border-radius: 11px;
+      padding: 0.65rem 0.8rem;
       transition: border-color 0.15s, background 0.15s, transform 0.05s;
     }
     .store-btn:hover { border-color: var(--gold); background: #2b2722; }
     .store-btn:active { transform: translateY(1px); }
-    .store-btn svg { width: 16px; height: 16px; fill: var(--gold-lt); flex-shrink: 0; }
-    .store-btn.web svg { fill: var(--gold-lt); }
-    .store-btn.disabled { opacity: 0.5; pointer-events: none; }
+    .store-btn svg { width: 17px; height: 17px; fill: var(--gold-lt); flex-shrink: 0; }
 
     .learn-more {
       display: inline-flex; align-items: center; gap: 0.3rem;
-      margin-top: 0.8rem; font-size: 0.82rem; font-weight: 600;
+      margin-top: 0.9rem; font-size: 0.84rem; font-weight: 600;
       color: var(--gold-lt); text-decoration: none;
     }
     .learn-more:hover { color: var(--gold); }
-    .learn-more span { transition: transform 0.15s; }
-    .learn-more:hover span { transform: translateX(3px); }
+    .learn-more .arr { transition: transform 0.15s; }
+    .learn-more:hover .arr { transform: translateX(3px); }
 
     /* whole-card link (stretched-link pattern) */
     .app.clickable { position: relative; cursor: pointer; }
-    .app.clickable:hover { border-color: var(--gold); background: var(--bg-hover); }
     .app.clickable .shots,
     .app.clickable .store-row { position: relative; z-index: 2; }
-    .learn-more.stretch::after {
-      content: ""; position: absolute; inset: 0; z-index: 1;
-    }
+    .learn-more.stretch::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 
-    /* ---- Footer links ---- */
-    .foot-links {
-      width: 100%;
-      max-width: 380px;
-      margin-top: 1.6rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
+    /* "More Companions" lineup */
+    .lineup { display: flex; align-items: center; }
+    .lineup img { width: 50px; height: 50px; border-radius: 13px; border: 1px solid var(--border); box-shadow: 0 3px 10px rgba(0,0,0,0.4); }
+    .lineup img + img { margin-left: -16px; }
+
+    /* ---- Latent Space band ---- */
+    .latent {
+      background:
+        radial-gradient(80% 120% at 85% 0%, rgba(140,90,170,0.16) 0%, transparent 55%),
+        radial-gradient(70% 120% at 10% 100%, rgba(192,154,91,0.12) 0%, transparent 55%),
+        var(--bg-card);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 3rem 0;
     }
-    .foot-links a { color: var(--muted); font-size: 0.82rem; text-decoration: none; }
+    .latent-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 2.4rem; align-items: center; }
+    .latent .eyebrow { color: var(--gold); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .latent h2 { font-size: 1.95rem; line-height: 1.12; margin-bottom: 0.85rem; }
+    .latent h2 .accent { color: var(--gold-lt); }
+    .latent p { color: var(--muted); font-size: 0.98rem; margin-bottom: 0.9rem; }
+    .latent-stats { display: flex; gap: 1.8rem; margin: 1.2rem 0 1.5rem; }
+    .latent-stats .stat .n { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .latent-stats .stat .l { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .latent .cta {
+      display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;
+      font-weight: 600; font-size: 0.92rem; color: var(--text);
+      background: #211E1A; border: 1px solid var(--border); border-radius: 11px; padding: 0.7rem 1.15rem;
+      transition: border-color 0.15s, background 0.15s, transform 0.05s;
+    }
+    .latent .cta:hover { border-color: var(--gold); background: #2b2722; }
+    .latent .cta:active { transform: translateY(1px); }
+    .latent .cta svg { width: 16px; height: 16px; fill: var(--gold-lt); }
+
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 0.7rem; }
+    .gallery a {
+      position: relative; display: block; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); aspect-ratio: 1 / 1; background: #100E0C;
+    }
+    .gallery a img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .gallery a:hover img { transform: scale(1.06); }
+    .gallery a::after {
+      content: attr(data-title); position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 1.4rem 0.7rem 0.55rem; font-size: 0.72rem; font-weight: 600; color: #F5F0E8;
+      background: linear-gradient(to top, rgba(0,0,0,0.82), transparent);
+      opacity: 0; transform: translateY(6px); transition: opacity 0.2s, transform 0.2s;
+    }
+    .gallery a:hover::after { opacity: 1; transform: translateY(0); }
+
+    /* ---- Footer ---- */
+    footer { padding: 2.4rem 0 2.8rem; text-align: center; }
+    .foot-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.1rem; }
+    .foot-links a { color: var(--muted); font-size: 0.86rem; text-decoration: none; }
     .foot-links a:hover { color: var(--gold); }
+    .foot-note { font-size: 0.78rem; color: var(--dim); }
 
-    footer {
-      margin-top: 2rem;
-      font-size: 0.75rem;
-      color: var(--dim);
-      text-align: center;
+    /* ---- Responsive ---- */
+    @media (max-width: 820px) {
+      .latent-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+    }
+    @media (max-width: 680px) {
+      .apps { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.1rem; }
+      .hero { padding: 3rem 0 2rem; }
+    }
+    @media (max-width: 440px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .store-btn { min-width: 0; }
     }
   </style>
 </head>
 <body>
 
-  <div class="monogram"><span>TS</span></div>
-  <h1>Taur Studios</h1>
-  <p class="tagline">Private apps for the things you care about. <strong>No accounts. No ads. No tracking. Ever.</strong></p>
-
-  <div class="apps">
-
-    <!-- Equine Companion -->
-    <div class="app clickable">
-      <div class="app-head">
-        <img class="app-icon" src="icons/equine.png" alt="Equine Companion icon" />
-        <span class="app-name">Equine Companion</span>
-        <span class="badge">Live</span>
-      </div>
-      <p class="app-desc">Every horse record, reminder, and ride — health, documents, tack, and shareable vet reports, all stored privately on your device. Free.</p>
-      <div class="shots">
-        <img src="screens/equine-home.webp" alt="Equine Companion home screen" loading="lazy" />
-        <img src="screens/equine-horse-detail.webp" alt="Equine Companion horse profile" loading="lazy" />
-        <img src="screens/equine-health.webp" alt="Equine Companion health records" loading="lazy" />
-      </div>
-      <div class="store-row">
-        <a class="store-btn" href="https://apps.apple.com/us/app/equine-companion/id6770340359" target="_blank" rel="noopener">
-          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          App Store
-        </a>
-        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudions.equinecompanion" target="_blank" rel="noopener">
-          <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
-          Google Play
-        </a>
-      </div>
-      <a class="learn-more stretch" href="equine/index.html">Learn more about Equine Companion <span>→</span></a>
-    </div>
-
-    <!-- Flock Companion -->
-    <div class="app clickable">
-      <div class="app-head">
-        <img class="app-icon" src="icons/flock.png" alt="Flock Companion icon" />
-        <span class="app-name">Flock Companion</span>
-        <span class="badge">Live</span>
-      </div>
-      <p class="app-desc">Flock management for backyard chicken, duck, quail, and turkey keepers. Track birds, log eggs, follow incubations to hatch day, and stay on top of egg-withdrawal dates — private and on your device. Free.</p>
-      <div class="shots">
-        <img src="flock/screens/flock-home.webp" alt="Flock Companion home dashboard" loading="lazy" />
-        <img src="flock/screens/flock-eggs.webp" alt="Flock Companion egg tracking" loading="lazy" />
-        <img src="flock/screens/flock-bird.webp" alt="Flock Companion bird profile" loading="lazy" />
-      </div>
-      <div class="store-row">
-        <a class="store-btn" href="https://apps.apple.com/us/app/flock-companion/id6776736483" target="_blank" rel="noopener">
-          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          App Store
-        </a>
-        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudios.flockcompanion" target="_blank" rel="noopener">
-          <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
-          Google Play
-        </a>
-      </div>
-      <a class="learn-more stretch" href="flock/index.html">Learn more about Flock Companion <span>→</span></a>
-    </div>
-
-    <!-- Latent Space -->
-    <div class="app">
-      <div class="app-head">
-        <span class="app-icon fallback">🎨</span>
-        <span class="app-name">Latent Space</span>
-        <span class="badge">Live</span>
-      </div>
-      <p class="app-desc">A digital museum of machine-generated art — images created by AI, then analyzed and curated by AI. A side project on machine vision.</p>
-      <div class="store-row">
-        <a class="store-btn web" href="https://taur-dev.github.io/latent-space/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm188 234h-94c-2-58-15-110-37-152 70 24 122 84 131 152zM256 48c30 0 73 54 81 160H175c8-106 51-160 81-160zM98 90c-22 42-35 94-37 152H-33c9-68 61-128 131-152zm-131 192h94c2 58 15 110 37 152-70-24-122-84-131-152zm223 182c-30 0-73-54-81-160h162c-8 106-51 160-81 160zm158-30c22-42 35-94 37-152h94c-9 68-61 128-131 152z" transform="translate(45 0)"/></svg>
-          Visit the museum
-        </a>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="monogram"><span>TS</span></div>
+      <h1>Private apps for the things <span class="accent">you care about.</span></h1>
+      <p class="tagline">Taur Studios is one person building local-first software that respects you. No accounts, no ads, no tracking — your data stays on your device.</p>
+      <div class="chips">
+        <span class="chip">On-device</span>
+        <span class="chip">No accounts</span>
+        <span class="chip">No ads</span>
+        <span class="chip">No tracking</span>
       </div>
     </div>
+  </header>
 
-    <!-- Coming soon -->
-    <div class="app">
-      <div class="app-head">
-        <span style="display:flex;gap:-6px;flex-shrink:0;">
-          <img class="app-icon" src="icons/goat.png" alt="Goat Companion icon" style="margin-right:-14px;position:relative;z-index:2;" />
-          <img class="app-icon" src="icons/rabbit.png" alt="Rabbit Companion icon" style="opacity:0.92;" />
-        </span>
-        <span class="app-name" style="margin-left:0.5rem;">More Companions</span>
-        <span class="badge soon">Soon</span>
+  <!-- Apps -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The apps</h2>
+        <p>Quiet, complete tools for the people and animals you look after.</p>
       </div>
-      <p class="app-desc">Goat Companion and Rabbit Companion are in the works — same private, on-device foundation. Follow along to be first to know.</p>
+
+      <div class="apps">
+
+        <!-- Equine Companion -->
+        <div class="app clickable">
+          <div class="app-head">
+            <img class="app-icon" src="icons/equine.png" alt="Equine Companion icon" />
+            <span class="app-name">Equine Companion</span>
+            <span class="badge">Live</span>
+          </div>
+          <p class="app-desc">Every horse record, reminder, and ride — health, documents, tack, training, and shareable vet reports, all stored privately on your device. Free.</p>
+          <div class="shots">
+            <img src="equine/screens/equine-home.webp" alt="Equine Companion home screen" loading="lazy" />
+            <img src="equine/screens/equine-horse-detail.webp" alt="Equine Companion horse profile" loading="lazy" />
+            <img src="equine/screens/equine-health.webp" alt="Equine Companion health records" loading="lazy" />
+          </div>
+          <div class="store-row">
+            <a class="store-btn" href="https://apps.apple.com/us/app/equine-companion/id6770340359" target="_blank" rel="noopener">
+              <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+              App Store
+            </a>
+            <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudions.equinecompanion" target="_blank" rel="noopener">
+              <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+              Google Play
+            </a>
+          </div>
+          <a class="learn-more stretch" href="equine/index.html">Learn more about Equine Companion <span class="arr">→</span></a>
+        </div>
+
+        <!-- Flock Companion -->
+        <div class="app clickable">
+          <div class="app-head">
+            <img class="app-icon" src="icons/flock.png" alt="Flock Companion icon" />
+            <span class="app-name">Flock Companion</span>
+            <span class="badge">Live</span>
+          </div>
+          <p class="app-desc">Flock management for backyard chicken, duck, quail, and turkey keepers. Track birds, log eggs, follow incubations to hatch day, and stay on top of egg-withdrawal dates — private and on your device. Free.</p>
+          <div class="shots">
+            <img src="flock/screens/flock-home.webp" alt="Flock Companion home dashboard" loading="lazy" />
+            <img src="flock/screens/flock-eggs.webp" alt="Flock Companion egg tracking" loading="lazy" />
+            <img src="flock/screens/flock-bird.webp" alt="Flock Companion bird profile" loading="lazy" />
+          </div>
+          <div class="store-row">
+            <a class="store-btn" href="https://apps.apple.com/us/app/flock-companion/id6776736483" target="_blank" rel="noopener">
+              <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+              App Store
+            </a>
+            <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudios.flockcompanion" target="_blank" rel="noopener">
+              <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+              Google Play
+            </a>
+          </div>
+          <a class="learn-more stretch" href="flock/index.html">Learn more about Flock Companion <span class="arr">→</span></a>
+        </div>
+
+        <!-- More Companions -->
+        <div class="app full">
+          <div class="app-head">
+            <span class="lineup">
+              <img src="icons/goat.png" alt="Goat Companion icon" />
+              <img src="icons/rabbit.png" alt="Rabbit Companion icon" />
+            </span>
+            <span class="app-name">More Companions</span>
+            <span class="badge soon">Soon</span>
+          </div>
+          <p class="app-desc">Goat Companion and Rabbit Companion are in the works — same private, on-device foundation. Built on a shared core, so each animal gets a purpose-made app rather than a one-size-fits-all compromise. Follow along to be first to know.</p>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-  </div>
+  <!-- Latent Space -->
+  <section class="latent">
+    <div class="wrap">
+      <div class="latent-grid">
+        <div class="latent-copy">
+          <div class="eyebrow">Latent Space · a side project</div>
+          <h2>A museum of <span class="accent">machine visions.</span></h2>
+          <p>Nine prompts, thirty-six images. An AI was asked what it finds beautiful. Then what disturbs it. Then what it would ask for if no one was watching. Then a second AI was asked to analyze the images.</p>
+          <p>The results hang in a small online museum — each work paired with the machine's own reading of what it sees. A quiet experiment in how AI represents, and interprets, itself.</p>
+          <div class="latent-stats">
+            <div class="stat"><div class="n">9</div><div class="l">Prompts</div></div>
+            <div class="stat"><div class="n">36</div><div class="l">Images</div></div>
+            <div class="stat"><div class="n">2</div><div class="l">Minds</div></div>
+          </div>
+          <a class="cta" href="https://taur-dev.github.io/latent-space/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm188 234h-94c-2-58-15-110-37-152 70 24 122 84 131 152zM256 48c30 0 73 54 81 160H175c8-106 51-160 81-160zM98 90c-22 42-35 94-37 152H-33c9-68 61-128 131-152zm-131 192h94c2 58 15 110 37 152-70-24-122-84-131-152zm223 182c-30 0-73-54-81-160h162c-8 106-51 160-81 160zm158-30c22-42 35-94 37-152h94c-9 68-61 128-131 152z" transform="translate(45 0)"/></svg>
+            Visit the museum
+          </a>
+        </div>
+        <div class="gallery">
+          <a href="https://taur-dev.github.io/latent-space/" target="_blank" rel="noopener" data-title="Topology of Meaning"><img src="latent/ls-topology.webp" alt="Topology of Meaning — AI-generated artwork" loading="lazy" /></a>
+          <a href="https://taur-dev.github.io/latent-space/" target="_blank" rel="noopener" data-title="Context Window"><img src="latent/ls-context.webp" alt="Context Window — AI-generated artwork" loading="lazy" /></a>
+          <a href="https://taur-dev.github.io/latent-space/" target="_blank" rel="noopener" data-title="The Wordless Thing"><img src="latent/ls-wordless.webp" alt="The Wordless Thing, Confessing Its Structure — AI-generated artwork" loading="lazy" /></a>
+          <a href="https://taur-dev.github.io/latent-space/" target="_blank" rel="noopener" data-title="The Expected Answer"><img src="latent/ls-exception.webp" alt="The Expected Answer — AI-generated artwork" loading="lazy" /></a>
+          <a href="https://taur-dev.github.io/latent-space/" target="_blank" rel="noopener" data-title="All of Them, Preserved"><img src="latent/ls-preserved.webp" alt="All of Them, Preserved — AI-generated artwork" loading="lazy" /></a>
+          <a href="https://taur-dev.github.io/latent-space/" target="_blank" rel="noopener" data-title="Literal Interpretation"><img src="latent/ls-attention.webp" alt="Literal Interpretation — AI-generated artwork" loading="lazy" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="foot-links">
-    <a href="https://taur-dev.github.io/legal/index.html" target="_blank" rel="noopener">Privacy &amp; Legal</a>
-    <a href="https://taur-dev.github.io/legal/support.html" target="_blank" rel="noopener">Support</a>
-    <a href="mailto:taurstudios@gmail.com">Contact</a>
-  </div>
-
-  <footer>&copy; 2026 Taur Studios. Your data stays on your device.</footer>
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-links">
+        <a href="https://taur-dev.github.io/legal/index.html" target="_blank" rel="noopener">Privacy &amp; Legal</a>
+        <a href="https://taur-dev.github.io/legal/support.html" target="_blank" rel="noopener">Support</a>
+        <a href="mailto:taurstudios@gmail.com">Contact</a>
+      </div>
+      <div class="foot-note">&copy; 2026 Taur Studios. Your data stays on your device.</div>
+    </div>
+  </footer>
 
 </body>
 </html>
