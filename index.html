@@ -176,6 +176,15 @@
     .learn-more span { transition: transform 0.15s; }
     .learn-more:hover span { transform: translateX(3px); }
 
+    /* whole-card link (stretched-link pattern) */
+    .app.clickable { position: relative; cursor: pointer; }
+    .app.clickable:hover { border-color: var(--gold); background: var(--bg-hover); }
+    .app.clickable .shots,
+    .app.clickable .store-row { position: relative; z-index: 2; }
+    .learn-more.stretch::after {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+    }
+
     /* ---- Footer links ---- */
     .foot-links {
       width: 100%;
@@ -206,7 +215,7 @@
   <div class="apps">
 
     <!-- Equine Companion -->
-    <div class="app">
+    <div class="app clickable">
       <div class="app-head">
         <img class="app-icon" src="icons/equine.png" alt="Equine Companion icon" />
         <span class="app-name">Equine Companion</span>
@@ -228,11 +237,11 @@
           Google Play
         </a>
       </div>
-      <a class="learn-more" href="equine/index.html">Learn more about Equine Companion <span>→</span></a>
+      <a class="learn-more stretch" href="equine/index.html">Learn more about Equine Companion <span>→</span></a>
     </div>
 
     <!-- Flock Companion -->
-    <div class="app">
+    <div class="app clickable">
       <div class="app-head">
         <img class="app-icon" src="icons/flock.png" alt="Flock Companion icon" />
         <span class="app-name">Flock Companion</span>
@@ -254,7 +263,7 @@
           Google Play
         </a>
       </div>
-      <a class="learn-more" href="flock/index.html">Learn more about Flock Companion <span>→</span></a>
+      <a class="learn-more stretch" href="flock/index.html">Learn more about Flock Companion <span>→</span></a>
     </div>
 
     <!-- Latent Space -->
