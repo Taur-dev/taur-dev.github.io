@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flock Companion — Your whole flock, private and on your device</title>
+  <meta name="description" content="Flock Companion tracks every bird, egg, and hatch for backyard chicken, duck, quail, and turkey keepers — health, egg withdrawal, incubation, and finances, all kept on your device. No accounts, no ads, no tracking. Free on iOS and Android." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Flock Companion" />
+  <meta property="og:description" content="Every bird, egg, and hatch — tracked privately on your device. No accounts, no ads, no tracking." />
+  <meta property="og:url" content="https://taur-dev.github.io/flock/" />
+  <meta property="og:image" content="https://taur-dev.github.io/icons/flock.png" />
+  <meta name="theme-color" content="#1C1A17" />
+  <link rel="icon" href="../icons/flock.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #1C1A17;
+      --bg-card:   #2A2620;
+      --bg-hover:  #302C28;
+      --border:    #3A3530;
+      --gold:      #C09A5B;
+      --gold-lt:   #E6C77E;
+      --text:      #F5F0E8;
+      --muted:     #A89880;
+      --dim:       #6B6058;
+      --maxw:      1080px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+    /* ---- Top bar ---- */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(28,26,23,0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar .wrap { display: flex; align-items: center; gap: 0.7rem; height: 58px; }
+    .brand-link { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .mono {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: radial-gradient(circle at 50% 40%, #2e2a24 0%, #181613 100%);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mono span {
+      font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 0.95rem;
+      background: linear-gradient(180deg, #FAE9A5 0%, #E6C760 40%, #A8782C 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .brand-link b { color: var(--muted); font-weight: 600; font-size: 0.9rem; }
+    .topbar .spacer { margin-left: auto; }
+    .topbar .top-cta {
+      font-size: 0.82rem; font-weight: 600; text-decoration: none; color: var(--text);
+      border: 1px solid var(--border); border-radius: 9px; padding: 0.42rem 0.85rem;
+      transition: border-color .15s, background .15s;
+    }
+    .topbar .top-cta:hover { border-color: var(--gold); background: var(--bg-hover); }
+
+    /* ---- Hero ---- */
+    .hero { position: relative; overflow: hidden; padding: 3.5rem 0 2.5rem; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(60% 70% at 50% -10%, rgba(192,154,91,0.16) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; align-items: center; }
+    .hero-copy { max-width: 540px; }
+    .hero-icon {
+      width: 76px; height: 76px; border-radius: 18px; border: 1px solid var(--border);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5); margin-bottom: 1.1rem;
+    }
+    .eyebrow { color: var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    h1 { font-size: 2.7rem; line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 0.9rem; }
+    h1 .accent { color: var(--gold-lt); }
+    .lede { color: var(--muted); font-size: 1.08rem; margin-bottom: 1.5rem; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.6rem; }
+    .chip {
+      font-size: 0.74rem; font-weight: 600; color: var(--gold-lt);
+      border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.7rem;
+      background: rgba(192,154,91,0.06);
+    }
+
+    .store-row { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
+      font-weight: 600; color: var(--text); background: #211E1A;
+      border: 1px solid var(--border); border-radius: 12px; padding: 0.7rem 1.05rem;
+      transition: border-color .15s, background .15s, transform .05s;
+    }
+    .store-btn:hover { border-color: var(--gold); background: #2b2722; }
+    .store-btn:active { transform: translateY(1px); }
+    .store-btn svg { width: 22px; height: 22px; fill: var(--gold-lt); flex-shrink: 0; }
+    .store-btn small { display: block; font-size: 0.62rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+    .store-btn .lbl { font-size: 0.98rem; line-height: 1.05; }
+
+    /* hero device cluster */
+    .hero-art { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 0; min-height: 360px; }
+    .phone {
+      border-radius: 28px; border: 1px solid var(--border); background: #100E0C;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.55); overflow: hidden;
+    }
+    .phone img { display: block; width: 100%; height: auto; }
+    .hero-art .p1 { width: 200px; transform: translateY(8px) rotate(-5deg); z-index: 1; }
+    .hero-art .p2 { width: 224px; transform: translateY(-14px); z-index: 3; margin: 0 -26px; position: relative; }
+    .hero-art .p3 { width: 200px; transform: translateY(8px) rotate(5deg); z-index: 1; }
+
+    /* ---- Section scaffolding ---- */
+    section { padding: 3.2rem 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 2.2rem; }
+    .section-head h2 { font-size: 1.9rem; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
+    .section-head p { color: var(--muted); font-size: 1.02rem; }
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ---- Screenshot showcase ---- */
+    .showcase { background: linear-gradient(180deg, transparent, rgba(192,154,91,0.04), transparent); }
+    .shots { display: flex; gap: 1rem; overflow-x: auto; padding: 0.5rem 0 1.2rem; scroll-snap-type: x mandatory;
+      scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .shots::-webkit-scrollbar { height: 6px; }
+    .shots::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+    .shot { scroll-snap-align: center; flex-shrink: 0; width: 234px; }
+    .shot .frame {
+      border-radius: 22px; border: 1px solid var(--border); background: #100E0C;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.45); overflow: hidden;
+    }
+    .shot .frame img { display: block; width: 100%; height: auto; }
+    .shot .cap { text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 0.7rem; font-weight: 500; }
+
+    /* ---- Features ---- */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .feat {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.4rem 1.35rem; transition: border-color .15s, transform .15s;
+    }
+    .feat:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .feat .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(192,154,91,0.12);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; }
+    .feat .ic svg { width: 20px; height: 20px; stroke: var(--gold-lt); fill: none; stroke-width: 1.8; }
+    .feat h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+    .feat p { color: var(--muted); font-size: 0.9rem; }
+
+    /* ---- Privacy band ---- */
+    .privacy { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .privacy .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; align-items: center; }
+    .privacy h2 { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .privacy p { color: var(--muted); margin-bottom: 0.7rem; }
+    .privacy .promise-list { list-style: none; display: grid; gap: 0.7rem; }
+    .privacy .promise-list li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.96rem; }
+    .privacy .promise-list svg { width: 20px; height: 20px; fill: none; stroke: #8FB98F; stroke-width: 2; flex-shrink: 0; margin-top: 1px; }
+
+    /* ---- FAQ ---- */
+    .faq-list { max-width: 740px; margin: 0 auto; display: grid; gap: 0.7rem; }
+    details {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 0 1.2rem; transition: border-color .15s;
+    }
+    details[open] { border-color: var(--gold); }
+    summary { list-style: none; cursor: pointer; padding: 1.05rem 0; font-weight: 600; font-size: 1rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    summary::-webkit-details-marker { display: none; }
+    summary .plus { color: var(--gold-lt); font-size: 1.3rem; line-height: 1; transition: transform .2s; }
+    details[open] summary .plus { transform: rotate(45deg); }
+    details p { color: var(--muted); font-size: 0.94rem; padding: 0 0 1.1rem; }
+
+    /* ---- Final CTA ---- */
+    .final { text-align: center; }
+    .final h2 { font-size: 2rem; margin-bottom: 0.7rem; }
+    .final p { color: var(--muted); margin-bottom: 1.6rem; }
+    .final .store-row { justify-content: center; }
+
+    /* ---- Footer ---- */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; justify-content: center; text-align: center; }
+    footer a { color: var(--muted); font-size: 0.85rem; text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    footer .copy { width: 100%; color: var(--dim); font-size: 0.78rem; margin-top: 0.3rem; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 860px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-art { order: 2; min-height: 320px; }
+      h1 { font-size: 2.2rem; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .privacy .wrap { grid-template-columns: 1fr; gap: 1.6rem; }
+    }
+    @media (max-width: 520px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.95rem; }
+      .hero-art .p1, .hero-art .p3 { display: none; }
+      .hero-art .p2 { width: 230px; margin: 0; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="wrap">
+      <a class="brand-link" href="../index.html">
+        <span class="mono"><span>TS</span></span>
+        <b>Taur Studios</b>
+      </a>
+      <span class="spacer"></span>
+      <a class="top-cta" href="#get">Get the app</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <img class="hero-icon" src="../icons/flock.png" alt="Flock Companion app icon" />
+        <div class="eyebrow">Flock Companion</div>
+        <h1>Every bird, egg, and hatch — <span class="accent">all in one private place.</span></h1>
+        <p class="lede">Flock management for backyard chicken, duck, quail, and turkey keepers. Track your birds, log eggs in seconds, watch incubations to hatch day, and keep medication withdrawal dates straight — all stored on your device.</p>
+        <div class="chips">
+          <span class="chip">No accounts</span>
+          <span class="chip">No ads</span>
+          <span class="chip">No tracking</span>
+          <span class="chip">Free to use</span>
+        </div>
+        <div class="store-row">
+          <a class="store-btn" href="https://apps.apple.com/us/app/flock-companion/id6776736483" target="_blank" rel="noopener">
+            <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span><small>Download on the</small><span class="lbl">App Store</span></span>
+          </a>
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudios.flockcompanion" target="_blank" rel="noopener">
+            <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+            <span><small>Get it on</small><span class="lbl">Google Play</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="phone p1"><img src="screens/flock-eggs.webp" alt="Flock Companion egg production chart" loading="lazy" /></div>
+        <div class="phone p2"><img src="screens/flock-home.webp" alt="Flock Companion home dashboard" /></div>
+        <div class="phone p3"><img src="screens/flock-bird.webp" alt="Flock Companion bird profile" loading="lazy" /></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Showcase -->
+  <section class="showcase">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>From the first egg to hatch day</h2>
+        <p>Everything a backyard keeper juggles, in one calm app — swipe through a few of the screens.</p>
+      </div>
+      <div class="shots">
+        <div class="shot"><div class="frame"><img src="screens/flock-home.webp" alt="Home dashboard" loading="lazy" /></div><div class="cap">Your whole flock, at a glance</div></div>
+        <div class="shot"><div class="frame"><img src="screens/flock-eggs.webp" alt="Egg production chart" loading="lazy" /></div><div class="cap">Every egg, tracked in seconds</div></div>
+        <div class="shot"><div class="frame"><img src="screens/flock-bird.webp" alt="Bird profile" loading="lazy" /></div><div class="cap">Know every bird</div></div>
+        <div class="shot"><div class="frame"><img src="screens/flock-hatchery.webp" alt="Incubation tracking" loading="lazy" /></div><div class="cap">From set to hatch, day by day</div></div>
+        <div class="shot"><div class="frame"><img src="screens/flock-financial.webp" alt="Flock finances" loading="lazy" /></div><div class="cap">See if your flock pays for itself</div></div>
+        <div class="shot"><div class="frame"><img src="screens/flock-knowledge.webp" alt="Knowledge base" loading="lazy" /></div><div class="cap">A built-in care reference</div></div>
+        <div class="shot"><div class="frame"><img src="screens/flock-settings.webp" alt="Privacy and settings" loading="lazy" /></div><div class="cap">No account. Your data stays yours.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Features -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Made for the realities of keeping birds</h2>
+        <p>Chickens, ducks, quail, turkeys — the things you actually need to remember, in one tidy place.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="6" ry="8"/></svg></div>
+          <h3>Egg logging & trends</h3>
+          <p>Tap in today's eggs and watch 30- and 90-day production charts so you can spot a slow week before it becomes a problem.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg></div>
+          <h3>A profile per bird</h3>
+          <p>Photo, breed, sex, hatch date, leg band, and a tidy health history for every bird in the flock.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h3>Egg withdrawal safety</h3>
+          <p>Log a medication and the app counts down the egg-withdrawal period, so you never eat an egg you shouldn't.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6c0 4-6 12-6 12S6 13 6 9a6 6 0 0 1 6-6z"/></svg></div>
+          <h3>Incubation & hatching</h3>
+          <p>Track an incubation batch from set through lockdown to hatch day, with the countdowns that keep a hatch on schedule.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 7-8"/><path d="M16 4h5v5"/></svg></div>
+          <h3>Does the flock pay?</h3>
+          <p>Weigh egg sales against feed and supply costs with a simple running picture of your flock's finances.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h6"/></svg></div>
+          <h3>Care knowledge built in</h3>
+          <p>A reference for common conditions, breeds, and seasonal care — there when you need an answer, no searching the web.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy band -->
+  <section class="privacy">
+    <div class="wrap">
+      <div>
+        <h2>Your flock's records stay on your device. Full stop.</h2>
+        <p>Most apps in this space want an account, then quietly use your data to sell ads. Flock Companion does the opposite — it's built privacy-first, by one person, because what's in your coop is your business.</p>
+        <p>There's no sign-up and no server holding your information. The app works fully offline; the only optional outbound call is weather, and it sends no personal data.</p>
+      </div>
+      <ul class="promise-list">
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No account required.</strong> Open the app and start — nothing to sign up for.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No ads, ever.</strong> Nothing to sell, no inventory to fill.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No tracking or analytics SDKs.</strong> The app doesn't phone home.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>Works offline.</strong> Your records live on your phone, not a server.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="wrap">
+      <div class="section-head"><h2>Questions, answered</h2></div>
+      <div class="faq-list">
+        <details open>
+          <summary>Which birds does it support? <span class="plus">+</span></summary>
+          <p>Backyard poultry of all kinds — chickens, ducks, quail, and turkeys — with breeds and egg colors built in so your records look right from day one.</p>
+        </details>
+        <details>
+          <summary>How much does it cost? <span class="plus">+</span></summary>
+          <p>Flock Companion is free to download and use on both the App Store and Google Play. An optional one-time Pro unlock adds features like hatchery tracking and flock finances — there's no subscription.</p>
+        </details>
+        <details>
+          <summary>Do I need to create an account? <span class="plus">+</span></summary>
+          <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
+        </details>
+        <details>
+          <summary>What is egg withdrawal tracking? <span class="plus">+</span></summary>
+          <p>When you give a bird medication, eggs often shouldn't be eaten for a set period afterward. Log the medication and Flock Companion counts down that withdrawal window for you, so you never eat an egg you shouldn't.</p>
+        </details>
+        <details>
+          <summary>Where is my data stored? <span class="plus">+</span></summary>
+          <p>Entirely on your phone or tablet. There's no Taur Studios server holding your flock's information, so there's nothing to be breached or sold.</p>
+        </details>
+        <details>
+          <summary>Does it work without internet? <span class="plus">+</span></summary>
+          <p>Yes. The app is fully usable offline. The only optional online feature is weather, which sends no personal information.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final" id="get">
+    <div class="wrap">
+      <h2>Get your flock organized</h2>
+      <p>Free on iOS and Android. No account, no ads, no tracking — just your birds.</p>
+      <div class="store-row">
+        <a class="store-btn" href="https://apps.apple.com/us/app/flock-companion/id6776736483" target="_blank" rel="noopener">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><small>Download on the</small><span class="lbl">App Store</span></span>
+        </a>
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudios.flockcompanion" target="_blank" rel="noopener">
+          <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+          <span><small>Get it on</small><span class="lbl">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <a href="../index.html">All Taur Studios apps</a>
+      <a href="../equine/index.html">Equine Companion</a>
+      <a href="https://taur-dev.github.io/legal/index.html" target="_blank" rel="noopener">Privacy &amp; Legal</a>
+      <a href="https://taur-dev.github.io/legal/support.html" target="_blank" rel="noopener">Support</a>
+      <a href="mailto:taurstudios@gmail.com">Contact</a>
+      <div class="copy">&copy; 2026 Taur Studios. Your data stays on your device.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

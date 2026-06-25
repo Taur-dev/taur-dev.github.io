@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equine Companion — Every horse record, private and on your device</title>
+  <meta name="description" content="Equine Companion keeps every horse record, reminder, and ride on your device — health, documents, tack, training, and shareable vet reports. No accounts, no ads, no tracking. Free on iOS and Android." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Equine Companion" />
+  <meta property="og:description" content="Every horse record, reminder, and ride — stored privately on your device. No accounts, no ads, no tracking." />
+  <meta property="og:url" content="https://taur-dev.github.io/equine/" />
+  <meta property="og:image" content="https://taur-dev.github.io/icons/equine.png" />
+  <meta name="theme-color" content="#1C1A17" />
+  <link rel="icon" href="../icons/equine.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #1C1A17;
+      --bg-card:   #2A2620;
+      --bg-hover:  #302C28;
+      --border:    #3A3530;
+      --gold:      #C09A5B;
+      --gold-lt:   #E6C77E;
+      --text:      #F5F0E8;
+      --muted:     #A89880;
+      --dim:       #6B6058;
+      --maxw:      1080px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+    /* ---- Top bar ---- */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(28,26,23,0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar .wrap { display: flex; align-items: center; gap: 0.7rem; height: 58px; }
+    .brand-link { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .mono {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: radial-gradient(circle at 50% 40%, #2e2a24 0%, #181613 100%);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mono span {
+      font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 0.95rem;
+      background: linear-gradient(180deg, #FAE9A5 0%, #E6C760 40%, #A8782C 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .brand-link b { color: var(--muted); font-weight: 600; font-size: 0.9rem; }
+    .topbar .spacer { margin-left: auto; }
+    .topbar .top-cta {
+      font-size: 0.82rem; font-weight: 600; text-decoration: none; color: var(--text);
+      border: 1px solid var(--border); border-radius: 9px; padding: 0.42rem 0.85rem;
+      transition: border-color .15s, background .15s;
+    }
+    .topbar .top-cta:hover { border-color: var(--gold); background: var(--bg-hover); }
+
+    /* ---- Hero ---- */
+    .hero { position: relative; overflow: hidden; padding: 3.5rem 0 2.5rem; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(60% 70% at 50% -10%, rgba(192,154,91,0.16) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; align-items: center; }
+    .hero-copy { max-width: 540px; }
+    .hero-icon {
+      width: 76px; height: 76px; border-radius: 18px; border: 1px solid var(--border);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5); margin-bottom: 1.1rem;
+    }
+    .eyebrow { color: var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    h1 { font-size: 2.7rem; line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 0.9rem; }
+    h1 .accent { color: var(--gold-lt); }
+    .lede { color: var(--muted); font-size: 1.08rem; margin-bottom: 1.5rem; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.6rem; }
+    .chip {
+      font-size: 0.74rem; font-weight: 600; color: var(--gold-lt);
+      border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.7rem;
+      background: rgba(192,154,91,0.06);
+    }
+
+    .store-row { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
+      font-weight: 600; color: var(--text); background: #211E1A;
+      border: 1px solid var(--border); border-radius: 12px; padding: 0.7rem 1.05rem;
+      transition: border-color .15s, background .15s, transform .05s;
+    }
+    .store-btn:hover { border-color: var(--gold); background: #2b2722; }
+    .store-btn:active { transform: translateY(1px); }
+    .store-btn svg { width: 22px; height: 22px; fill: var(--gold-lt); flex-shrink: 0; }
+    .store-btn small { display: block; font-size: 0.62rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+    .store-btn .lbl { font-size: 0.98rem; line-height: 1.05; }
+
+    /* hero device cluster */
+    .hero-art { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 0; min-height: 360px; }
+    .phone {
+      border-radius: 28px; border: 1px solid var(--border); background: #100E0C;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.55); overflow: hidden;
+    }
+    .phone img { display: block; width: 100%; height: auto; }
+    .hero-art .p1 { width: 200px; transform: translateY(8px) rotate(-5deg); z-index: 1; }
+    .hero-art .p2 { width: 224px; transform: translateY(-14px); z-index: 3; margin: 0 -26px; position: relative; }
+    .hero-art .p3 { width: 200px; transform: translateY(8px) rotate(5deg); z-index: 1; }
+
+    /* ---- Section scaffolding ---- */
+    section { padding: 3.2rem 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 2.2rem; }
+    .section-head h2 { font-size: 1.9rem; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
+    .section-head p { color: var(--muted); font-size: 1.02rem; }
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ---- Screenshot showcase ---- */
+    .showcase { background: linear-gradient(180deg, transparent, rgba(192,154,91,0.04), transparent); }
+    .shots { display: flex; gap: 1rem; overflow-x: auto; padding: 0.5rem 0 1.2rem; scroll-snap-type: x mandatory;
+      scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .shots::-webkit-scrollbar { height: 6px; }
+    .shots::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+    .shot { scroll-snap-align: center; flex-shrink: 0; width: 234px; }
+    .shot .frame {
+      border-radius: 22px; border: 1px solid var(--border); background: #100E0C;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.45); overflow: hidden;
+    }
+    .shot .frame img { display: block; width: 100%; height: auto; }
+    .shot .cap { text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 0.7rem; font-weight: 500; }
+
+    /* ---- Features ---- */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .feat {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.4rem 1.35rem; transition: border-color .15s, transform .15s;
+    }
+    .feat:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .feat .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(192,154,91,0.12);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; }
+    .feat .ic svg { width: 20px; height: 20px; stroke: var(--gold-lt); fill: none; stroke-width: 1.8; }
+    .feat h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+    .feat p { color: var(--muted); font-size: 0.9rem; }
+
+    /* ---- Privacy band ---- */
+    .privacy { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .privacy .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; align-items: center; }
+    .privacy h2 { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .privacy p { color: var(--muted); margin-bottom: 0.7rem; }
+    .privacy .promise-list { list-style: none; display: grid; gap: 0.7rem; }
+    .privacy .promise-list li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.96rem; }
+    .privacy .promise-list svg { width: 20px; height: 20px; fill: none; stroke: #8FB98F; stroke-width: 2; flex-shrink: 0; margin-top: 1px; }
+
+    /* ---- FAQ ---- */
+    .faq-list { max-width: 740px; margin: 0 auto; display: grid; gap: 0.7rem; }
+    details {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 0 1.2rem; transition: border-color .15s;
+    }
+    details[open] { border-color: var(--gold); }
+    summary { list-style: none; cursor: pointer; padding: 1.05rem 0; font-weight: 600; font-size: 1rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    summary::-webkit-details-marker { display: none; }
+    summary .plus { color: var(--gold-lt); font-size: 1.3rem; line-height: 1; transition: transform .2s; }
+    details[open] summary .plus { transform: rotate(45deg); }
+    details p { color: var(--muted); font-size: 0.94rem; padding: 0 0 1.1rem; }
+
+    /* ---- Final CTA ---- */
+    .final { text-align: center; }
+    .final h2 { font-size: 2rem; margin-bottom: 0.7rem; }
+    .final p { color: var(--muted); margin-bottom: 1.6rem; }
+    .final .store-row { justify-content: center; }
+
+    /* ---- Footer ---- */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; justify-content: center; text-align: center; }
+    footer a { color: var(--muted); font-size: 0.85rem; text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    footer .copy { width: 100%; color: var(--dim); font-size: 0.78rem; margin-top: 0.3rem; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 860px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-art { order: 2; min-height: 320px; }
+      h1 { font-size: 2.2rem; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .privacy .wrap { grid-template-columns: 1fr; gap: 1.6rem; }
+    }
+    @media (max-width: 520px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.95rem; }
+      .hero-art .p1, .hero-art .p3 { display: none; }
+      .hero-art .p2 { width: 230px; margin: 0; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="wrap">
+      <a class="brand-link" href="../index.html">
+        <span class="mono"><span>TS</span></span>
+        <b>Taur Studios</b>
+      </a>
+      <span class="spacer"></span>
+      <a class="top-cta" href="#get">Get the app</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <img class="hero-icon" src="../icons/equine.png" alt="Equine Companion app icon" />
+        <div class="eyebrow">Equine Companion</div>
+        <h1>Every horse record, <span class="accent">private and in your pocket.</span></h1>
+        <p class="lede">Health history, reminders, documents, tack, training, and shareable vet reports — all kept on your device. No account to make, nothing to sync, nothing watching over your shoulder.</p>
+        <div class="chips">
+          <span class="chip">No accounts</span>
+          <span class="chip">No ads</span>
+          <span class="chip">No tracking</span>
+          <span class="chip">Free to use</span>
+        </div>
+        <div class="store-row" id="get-top">
+          <a class="store-btn" href="https://apps.apple.com/us/app/equine-companion/id6770340359" target="_blank" rel="noopener">
+            <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span><small>Download on the</small><span class="lbl">App Store</span></span>
+          </a>
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudions.equinecompanion" target="_blank" rel="noopener">
+            <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+            <span><small>Get it on</small><span class="lbl">Google Play</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="phone p1"><img src="screens/equine-health.webp" alt="Equine Companion health records" loading="lazy" /></div>
+        <div class="phone p2"><img src="screens/equine-home.webp" alt="Equine Companion home screen" /></div>
+        <div class="phone p3"><img src="screens/equine-horse-detail.webp" alt="Equine Companion horse profile" loading="lazy" /></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Showcase -->
+  <section class="showcase">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Built for the barn, not the cloud</h2>
+        <p>A calm, complete record for every horse in your care — swipe through a few of the screens.</p>
+      </div>
+      <div class="shots">
+        <div class="shot"><div class="frame"><img src="screens/equine-home.webp" alt="Home dashboard" loading="lazy" /></div><div class="cap">Your whole stable at a glance</div></div>
+        <div class="shot"><div class="frame"><img src="screens/equine-horse-detail.webp" alt="Horse profile" loading="lazy" /></div><div class="cap">A full profile per horse</div></div>
+        <div class="shot"><div class="frame"><img src="screens/equine-health.webp" alt="Health records" loading="lazy" /></div><div class="cap">Health, vaccines & farrier</div></div>
+        <div class="shot"><div class="frame"><img src="screens/equine-training.webp" alt="Training log" loading="lazy" /></div><div class="cap">Log rides & training</div></div>
+        <div class="shot"><div class="frame"><img src="screens/equine-competition.webp" alt="Competition records" loading="lazy" /></div><div class="cap">Track competitions</div></div>
+        <div class="shot"><div class="frame"><img src="screens/equine-budget.webp" alt="Budget tracking" loading="lazy" /></div><div class="cap">Keep an eye on costs</div></div>
+        <div class="shot"><div class="frame"><img src="screens/equine-gallery.webp" alt="Photo gallery and documents" loading="lazy" /></div><div class="cap">Photos & documents</div></div>
+        <div class="shot"><div class="frame"><img src="screens/equine-knowledge-base.webp" alt="Knowledge base" loading="lazy" /></div><div class="cap">A built-in care reference</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Features -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Everything a horse owner keeps track of</h2>
+        <p>One tidy place for the records that usually live in a dozen notebooks, photos, and texts.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></div>
+          <h3>Health & vet history</h3>
+          <p>Vaccinations, deworming, dental, farrier visits, conditions and medications — dated and easy to find.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H21l-5.4 4 2 6.9L12 16l-5.6 3.8 2-6.9L3 8.9h6.6z"/></svg></div>
+          <h3>A profile per horse</h3>
+          <p>Breed, age, markings, microchip, owner and barn details — a complete picture for every horse you manage.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h3>Reminders that matter</h3>
+          <p>Never miss a vaccine booster, a worming date, or the farrier — gentle reminders for what's coming up.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 16l3-4 3 2 4-6"/></svg></div>
+          <h3>Training & ride log</h3>
+          <p>Record sessions, progress, and goals so you can see how each horse is coming along over time.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 4v16M4 9h4M4 14h4"/></svg></div>
+          <h3>Documents & photos</h3>
+          <p>Coggins, registration papers, insurance, conformation photos — stored alongside the horse they belong to.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 8-8 8 8 0 0 1 8 8M9 16h6M12 12v4"/><path d="M16 8l1.5-1.5"/></svg></div>
+          <h3>Shareable vet reports</h3>
+          <p>Generate a clean summary to hand to your vet or a new owner — without ever putting your data in someone's cloud.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy band -->
+  <section class="privacy">
+    <div class="wrap">
+      <div>
+        <h2>Your data stays on your device. Full stop.</h2>
+        <p>Most apps in this space want an account, then quietly use your data to sell ads. Equine Companion does the opposite — it's built privacy-first, by one person, because your horses' records are yours.</p>
+        <p>There's no sign-up and no server holding your information. The app works fully offline; the only optional outbound call is weather, and it sends no personal data.</p>
+      </div>
+      <ul class="promise-list">
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No account required.</strong> Open the app and start — nothing to sign up for.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No ads, ever.</strong> Nothing to sell, no inventory to fill.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No tracking or analytics SDKs.</strong> The app doesn't phone home.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>Works offline.</strong> Your records live on your phone, not a server.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="wrap">
+      <div class="section-head"><h2>Questions, answered</h2></div>
+      <div class="faq-list">
+        <details open>
+          <summary>How much does it cost? <span class="plus">+</span></summary>
+          <p>Equine Companion is free to download and use on both the App Store and Google Play. An optional one-time Pro unlock adds extra features if you want them — there's no subscription.</p>
+        </details>
+        <details>
+          <summary>Do I need to create an account? <span class="plus">+</span></summary>
+          <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
+        </details>
+        <details>
+          <summary>Where is my data stored? <span class="plus">+</span></summary>
+          <p>Entirely on your phone or tablet. There's no Taur Studios server holding your horses' information, so there's nothing to be breached or sold.</p>
+        </details>
+        <details>
+          <summary>Can I manage more than one horse? <span class="plus">+</span></summary>
+          <p>Yes — keep as many horses as you like, each with its own profile, health history, documents, and training log. It's built for owners, trainers, and barns managing several.</p>
+        </details>
+        <details>
+          <summary>Can I move my data to a new phone? <span class="plus">+</span></summary>
+          <p>Because everything lives on-device, you control your data. The app includes the tools you need to keep and move your records — no cloud account required.</p>
+        </details>
+        <details>
+          <summary>Does it work without internet? <span class="plus">+</span></summary>
+          <p>Yes. The app is fully usable offline. The only optional online feature is weather, which sends no personal information.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final" id="get">
+    <div class="wrap">
+      <h2>Bring the barn paperwork into your pocket</h2>
+      <p>Free on iOS and Android. No account, no ads, no tracking — just your horses.</p>
+      <div class="store-row">
+        <a class="store-btn" href="https://apps.apple.com/us/app/equine-companion/id6770340359" target="_blank" rel="noopener">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><small>Download on the</small><span class="lbl">App Store</span></span>
+        </a>
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudions.equinecompanion" target="_blank" rel="noopener">
+          <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+          <span><small>Get it on</small><span class="lbl">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <a href="../index.html">All Taur Studios apps</a>
+      <a href="../flock/index.html">Flock Companion</a>
+      <a href="https://taur-dev.github.io/legal/index.html" target="_blank" rel="noopener">Privacy &amp; Legal</a>
+      <a href="https://taur-dev.github.io/legal/support.html" target="_blank" rel="noopener">Support</a>
+      <a href="mailto:taurstudios@gmail.com">Contact</a>
+      <div class="copy">&copy; 2026 Taur Studios. Your data stays on your device.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
