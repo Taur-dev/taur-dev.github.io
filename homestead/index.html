@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homestead Companion — Your whole homestead, private and on your device</title>
+  <meta name="description" content="Homestead Companion is a free, private homestead manager — chores, calendar, budget, garden, weather, and notes on your device. Add one-time modules for poultry, goats, rabbits, and equine. No accounts, no ads, no subscription. Free on iOS and Android." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Homestead Companion" />
+  <meta property="og:description" content="One private app for the whole place — chores, budget, garden, and the animals you keep. No accounts, no ads, no subscription." />
+  <meta property="og:url" content="https://taur-dev.github.io/homestead/" />
+  <meta property="og:image" content="https://taur-dev.github.io/icons/homestead.png" />
+  <meta name="theme-color" content="#1C1A17" />
+  <link rel="icon" href="../icons/homestead.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #1C1A17;
+      --bg-card:   #2A2620;
+      --bg-hover:  #302C28;
+      --border:    #3A3530;
+      --gold:      #C09A5B;
+      --gold-lt:   #E6C77E;
+      --text:      #F5F0E8;
+      --muted:     #A89880;
+      --dim:       #6B6058;
+      --maxw:      1080px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+    /* ---- Top bar ---- */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(28,26,23,0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar .wrap { display: flex; align-items: center; gap: 0.7rem; height: 58px; }
+    .brand-link { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .mono {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: radial-gradient(circle at 50% 40%, #2e2a24 0%, #181613 100%);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mono span {
+      font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 0.95rem;
+      background: linear-gradient(180deg, #FAE9A5 0%, #E6C760 40%, #A8782C 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .brand-link b { color: var(--muted); font-weight: 600; font-size: 0.9rem; }
+    .topbar .spacer { margin-left: auto; }
+    .topbar .top-cta {
+      font-size: 0.82rem; font-weight: 600; text-decoration: none; color: var(--text);
+      border: 1px solid var(--border); border-radius: 9px; padding: 0.42rem 0.85rem;
+      transition: border-color .15s, background .15s;
+    }
+    .topbar .top-cta:hover { border-color: var(--gold); background: var(--bg-hover); }
+
+    /* ---- Hero ---- */
+    .hero { position: relative; overflow: hidden; padding: 3.5rem 0 2.5rem; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(60% 70% at 50% -10%, rgba(192,154,91,0.16) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; align-items: center; }
+    .hero-copy { max-width: 540px; }
+    .hero-icon {
+      width: 76px; height: 76px; border-radius: 18px; border: 1px solid var(--border);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5); margin-bottom: 1.1rem;
+    }
+    .eyebrow { color: var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    h1 { font-size: 2.7rem; line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 0.9rem; }
+    h1 .accent { color: var(--gold-lt); }
+    .lede { color: var(--muted); font-size: 1.08rem; margin-bottom: 1.5rem; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.6rem; }
+    .chip {
+      font-size: 0.74rem; font-weight: 600; color: var(--gold-lt);
+      border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.7rem;
+      background: rgba(192,154,91,0.06);
+    }
+
+    .store-row { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
+      font-weight: 600; color: var(--text); background: #211E1A;
+      border: 1px solid var(--border); border-radius: 12px; padding: 0.7rem 1.05rem;
+      transition: border-color .15s, background .15s, transform .05s;
+    }
+    .store-btn:hover { border-color: var(--gold); background: #2b2722; }
+    .store-btn:active { transform: translateY(1px); }
+    .store-btn svg { width: 22px; height: 22px; fill: var(--gold-lt); flex-shrink: 0; }
+    .store-btn small { display: block; font-size: 0.62rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+    .store-btn .lbl { font-size: 0.98rem; line-height: 1.05; }
+
+    /* hero device cluster */
+    .hero-art { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 0; min-height: 360px; }
+    .phone {
+      border-radius: 28px; border: 1px solid var(--border); background: #100E0C;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.55); overflow: hidden;
+    }
+    .phone img { display: block; width: 100%; height: auto; }
+    .hero-art .p1 { width: 200px; transform: translateY(8px) rotate(-5deg); z-index: 1; }
+    .hero-art .p2 { width: 224px; transform: translateY(-14px); z-index: 3; margin: 0 -26px; position: relative; }
+    .hero-art .p3 { width: 200px; transform: translateY(8px) rotate(5deg); z-index: 1; }
+
+    /* ---- Section scaffolding ---- */
+    section { padding: 3.2rem 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 2.2rem; }
+    .section-head h2 { font-size: 1.9rem; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
+    .section-head p { color: var(--muted); font-size: 1.02rem; }
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ---- Screenshot showcase ---- */
+    .showcase { background: linear-gradient(180deg, transparent, rgba(192,154,91,0.04), transparent); }
+    .shots { display: flex; gap: 1rem; overflow-x: auto; padding: 0.5rem 0 1.2rem; scroll-snap-type: x mandatory;
+      scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .shots::-webkit-scrollbar { height: 6px; }
+    .shots::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+    .shot { scroll-snap-align: center; flex-shrink: 0; width: 234px; }
+    .shot .frame {
+      border-radius: 22px; border: 1px solid var(--border); background: #100E0C;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.45); overflow: hidden;
+    }
+    .shot .frame img { display: block; width: 100%; height: auto; }
+    .shot .cap { text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 0.7rem; font-weight: 500; }
+
+    /* ---- Features ---- */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .feat {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.4rem 1.35rem; transition: border-color .15s, transform .15s;
+    }
+    .feat:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .feat .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(192,154,91,0.12);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; }
+    .feat .ic svg { width: 20px; height: 20px; stroke: var(--gold-lt); fill: none; stroke-width: 1.8; }
+    .feat h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+    .feat p { color: var(--muted); font-size: 0.9rem; }
+
+    /* ---- Privacy band ---- */
+    .privacy { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .privacy .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; align-items: center; }
+    .privacy h2 { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .privacy p { color: var(--muted); margin-bottom: 0.7rem; }
+    .privacy .promise-list { list-style: none; display: grid; gap: 0.7rem; }
+    .privacy .promise-list li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.96rem; }
+    .privacy .promise-list svg { width: 20px; height: 20px; fill: none; stroke: #8FB98F; stroke-width: 2; flex-shrink: 0; margin-top: 1px; }
+
+    /* ---- FAQ ---- */
+    .faq-list { max-width: 740px; margin: 0 auto; display: grid; gap: 0.7rem; }
+    details {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 0 1.2rem; transition: border-color .15s;
+    }
+    details[open] { border-color: var(--gold); }
+    summary { list-style: none; cursor: pointer; padding: 1.05rem 0; font-weight: 600; font-size: 1rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    summary::-webkit-details-marker { display: none; }
+    summary .plus { color: var(--gold-lt); font-size: 1.3rem; line-height: 1; transition: transform .2s; }
+    details[open] summary .plus { transform: rotate(45deg); }
+    details p { color: var(--muted); font-size: 0.94rem; padding: 0 0 1.1rem; }
+
+    /* ---- Final CTA ---- */
+    .final { text-align: center; }
+    .final h2 { font-size: 2rem; margin-bottom: 0.7rem; }
+    .final p { color: var(--muted); margin-bottom: 1.6rem; }
+    .final .store-row { justify-content: center; }
+
+    /* ---- Footer ---- */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; justify-content: center; text-align: center; }
+    footer a { color: var(--muted); font-size: 0.85rem; text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    footer .copy { width: 100%; color: var(--dim); font-size: 0.78rem; margin-top: 0.3rem; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 860px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-art { order: 2; min-height: 320px; }
+      h1 { font-size: 2.2rem; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .privacy .wrap { grid-template-columns: 1fr; gap: 1.6rem; }
+    }
+    @media (max-width: 520px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.95rem; }
+      .hero-art .p1, .hero-art .p3 { display: none; }
+      .hero-art .p2 { width: 230px; margin: 0; transform: none; }
+    }
+
+    /* ---- Modules ---- */
+    .modules-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .mod {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.3rem 1.25rem; display: flex; flex-direction: column;
+      transition: border-color .15s, transform .15s;
+    }
+    .mod:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .mod h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+    .mod p { color: var(--muted); font-size: 0.88rem; margin-bottom: 1rem; }
+    .mod .price {
+      margin-top: auto; align-self: flex-start;
+      font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em;
+      color: var(--gold-lt); border: 1px solid var(--border); border-radius: 999px;
+      padding: 0.26rem 0.66rem; background: rgba(192,154,91,0.08);
+    }
+    .mod .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(192,154,91,0.12);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; }
+    .mod .ic svg { width: 20px; height: 20px; stroke: var(--gold-lt); fill: none; stroke-width: 1.8; }
+    .modules-note { text-align: center; color: var(--dim); font-size: 0.86rem; margin-top: 1.4rem; }
+    @media (max-width: 860px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .modules-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="wrap">
+      <a class="brand-link" href="../index.html">
+        <span class="mono"><span>TS</span></span>
+        <b>Taur Studios</b>
+      </a>
+      <span class="spacer"></span>
+      <a class="top-cta" href="#get">Get the app</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <img class="hero-icon" src="../icons/homestead.png" alt="Homestead Companion app icon" />
+        <div class="eyebrow">Homestead Companion</div>
+        <h1>Chores, budget, garden, animals — <span class="accent">one private app for the whole place.</span></h1>
+        <p class="lede">A homestead isn't one thing, so it shouldn't take four apps. Homestead Companion keeps your tasks, calendar, budget, garden, weather, and notes in one place — free and complete on its own — then lets you add only the animals you actually keep.</p>
+        <div class="chips">
+          <span class="chip">No accounts</span>
+          <span class="chip">No ads</span>
+          <span class="chip">No tracking</span>
+          <span class="chip">No subscription</span>
+        </div>
+        <div class="store-row">
+          <a class="store-btn" href="https://apps.apple.com/us/app/homestead-companion/id6790952375" target="_blank" rel="noopener">
+            <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span><small>Download on the</small><span class="lbl">App Store</span></span>
+          </a>
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudios.homesteadcompanion" target="_blank" rel="noopener">
+            <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+            <span><small>Get it on</small><span class="lbl">Google Play</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="phone p1"><img src="screens/homestead-calendar.webp" alt="Homestead Companion calendar" loading="lazy" /></div>
+        <div class="phone p2"><img src="screens/homestead-home.webp" alt="Homestead Companion home dashboard" /></div>
+        <div class="phone p3"><img src="screens/homestead-budget.webp" alt="Homestead Companion budget" loading="lazy" /></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Showcase -->
+  <section class="showcase">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The whole operation, on one screen</h2>
+        <p>Tasks, money, garden, and animals stop living in separate notebooks — swipe through a few of the screens.</p>
+      </div>
+      <div class="shots">
+        <div class="shot"><div class="frame"><img src="screens/homestead-home.webp" alt="Home dashboard" loading="lazy" /></div><div class="cap">Your whole homestead, at a glance</div></div>
+        <div class="shot"><div class="frame"><img src="screens/homestead-calendar.webp" alt="Calendar and reminders" loading="lazy" /></div><div class="cap">Never miss a feeding or a vet visit</div></div>
+        <div class="shot"><div class="frame"><img src="screens/homestead-budget.webp" alt="Budget and finances" loading="lazy" /></div><div class="cap">See where the money actually goes</div></div>
+        <div class="shot"><div class="frame"><img src="screens/homestead-herd.webp" alt="Herd records" loading="lazy" /></div><div class="cap">Real records for every animal</div></div>
+        <div class="shot"><div class="frame"><img src="screens/homestead-privacy.webp" alt="Settings and privacy" loading="lazy" /></div><div class="cap">No account. Your data stays yours.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Features -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The free app is a complete homestead manager</h2>
+        <p>Not a trial, not a teaser. Everything below is in the app the moment you install it.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3>Tasks &amp; reminders</h3>
+          <p>Every chore across the whole place — recurring or one-off — with local notifications that fire whether or not you have signal.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+          <h3>One shared calendar</h3>
+          <p>Feedings, plantings, vet visits, and bills on a single calendar, with one-tap export to your phone's calendar app.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 7-8"/><path d="M16 4h5v5"/></svg></div>
+          <h3>One budget for everything</h3>
+          <p>Income and expenses across animals, garden, and product sales in a single ledger — so you can finally see whether the place pays for itself.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21c0-6 3-10 8-11-1 6-4 9-8 11z"/><path d="M12 21c0-5-2-8-7-9 1 5 3 8 7 9z"/></svg></div>
+          <h3>Garden &amp; harvests</h3>
+          <p>Beds, plantings, and harvest logs with running totals and a simple crop calendar — the piece that makes it homestead-shaped.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+          <h3>Local weather</h3>
+          <p>The forecast for your place, right on the home screen, so you know whether today is a planting day or a barn day.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5-6 6"/></svg></div>
+          <h3>Photos &amp; notes</h3>
+          <p>A gallery organized into albums and a searchable journal for everything that doesn't fit neatly into a form.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules -->
+  <section class="showcase">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Add only the animals you keep</h2>
+        <p>Each species is a module you unlock with a single one-time purchase. Yours forever — no subscription, ever.</p>
+      </div>
+      <div class="modules-grid">
+        <div class="mod">
+          <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="6" ry="8"/></svg></div>
+          <h3>Poultry</h3>
+          <p>Flocks and individual birds, coops, egg logs, feed and supplements, hatchery and breeding, and full health records.</p>
+          <span class="price">$6.99 once</span>
+        </div>
+        <div class="mod">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 8l2-4 3 4h6l3-4 2 4v4a8 8 0 0 1-16 0z"/><circle cx="10" cy="11" r="1"/><circle cx="14" cy="11" r="1"/></svg></div>
+          <h3>Goats</h3>
+          <p>Your herd, milk logs, kidding records, fiber, feed, and health — dairy, meat, and fiber goats alike.</p>
+          <span class="price">$6.99 once</span>
+        </div>
+        <div class="mod">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 10C8 6 7 3 9 3s2 4 2 7"/><path d="M16 10c0-4 1-7-1-7s-2 4-2 7"/><ellipse cx="12" cy="16" rx="6" ry="5"/></svg></div>
+          <h3>Rabbits</h3>
+          <p>The rabbitry, breeding and litters, daily care, weights, feed, and health for meat, fiber, and pet rabbits.</p>
+          <span class="price">$6.99 once</span>
+        </div>
+        <div class="mod">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 20c0-6 3-9 7-9 3 0 5-2 5-5l3 3-2 2c0 5-3 9-8 9z"/><path d="M7 20h10"/></svg></div>
+          <h3>Equine</h3>
+          <p>Horses, donkeys, mules, and drafts: hoof care and deworming cycles, health records and Coggins dates, weight and body condition, feed, and a work log.</p>
+          <span class="price">$6.99 once</span>
+        </div>
+      </div>
+      <p class="modules-note">Every module folds into the free core — its chores land on your calendar, its costs land in your budget. Buy one, buy them all, or none at all.</p>
+    </div>
+  </section>
+
+  <!-- Privacy band -->
+  <section class="privacy">
+    <div class="wrap">
+      <div>
+        <h2>Your homestead's records stay on your device. Full stop.</h2>
+        <p>Most apps in this space want an account, then quietly build a business on what you put in it. Homestead Companion does the opposite — it's built privacy-first, by one person, because what happens on your place is your business.</p>
+        <p>There's no sign-up and no server holding your information. The app works fully offline; the only optional outbound calls are weather and voice-to-text, and neither carries personal data the developer can see.</p>
+      </div>
+      <ul class="promise-list">
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No account required.</strong> Open the app and start — nothing to sign up for.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No subscription.</strong> The core is free; modules are one-time purchases.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No ads, no analytics SDKs.</strong> The app doesn't phone home.</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>Works offline.</strong> Your records live on your phone, not a server.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="wrap">
+      <div class="section-head"><h2>Questions, answered</h2></div>
+      <div class="faq-list">
+        <details open>
+          <summary>What do I get for free? <span class="plus">+</span></summary>
+          <p>The whole homestead core: tasks and reminders, a shared calendar with .ics export, a full budget with reports, the garden with beds and harvest logs, local weather, a photo gallery, and notes. It's a complete app on its own — you never have to buy anything.</p>
+        </details>
+        <details>
+          <summary>What are the modules, and what do they cost? <span class="plus">+</span></summary>
+          <p>Poultry, goats, rabbits, and equine are each a one-time $6.99 unlock that adds that animal's full record-keeping surface — the herd or flock, health, breeding, and species-specific production like eggs and milk. Buy only the ones you keep. There is no subscription anywhere in the app.</p>
+        </details>
+        <details>
+          <summary>How is this different from Equine or Flock Companion? <span class="plus">+</span></summary>
+          <p>Equine and Flock Companion are single-animal apps for people who keep one kind of animal seriously. Homestead Companion is for a mixed place — a bit of everything, plus a garden and the money and chores that tie it all together — with one calendar and one budget across the lot.</p>
+        </details>
+        <details>
+          <summary>Do I need to create an account? <span class="plus">+</span></summary>
+          <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
+        </details>
+        <details>
+          <summary>Where is my data stored? <span class="plus">+</span></summary>
+          <p>Entirely on your phone or tablet. There's no Taur Studios server holding your homestead's information, so there's nothing to be breached or sold. If you delete the app, your data goes with it — that's the point.</p>
+        </details>
+        <details>
+          <summary>Does it work without internet? <span class="plus">+</span></summary>
+          <p>Yes. The app is fully usable offline. The optional online features are weather, which sends only an approximate location to Open-Meteo at request time, and voice-to-text, which uses your device's own speech recognition.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final" id="get">
+    <div class="wrap">
+      <h2>Run the whole place from one app</h2>
+      <p>Free on iOS and Android. No account, no ads, no subscription — just your homestead.</p>
+      <div class="store-row">
+        <a class="store-btn" href="https://apps.apple.com/us/app/homestead-companion/id6790952375" target="_blank" rel="noopener">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><small>Download on the</small><span class="lbl">App Store</span></span>
+        </a>
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudios.homesteadcompanion" target="_blank" rel="noopener">
+          <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+          <span><small>Get it on</small><span class="lbl">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <a href="../index.html">All Taur Studios apps</a>
+      <a href="../equine/index.html">Equine Companion</a>
+      <a href="../flock/index.html">Flock Companion</a>
+      <a href="https://taur-dev.github.io/legal/homestead-privacy.html" target="_blank" rel="noopener">Privacy</a>
+      <a href="https://taur-dev.github.io/legal/homestead-support.html" target="_blank" rel="noopener">Support</a>
+      <a href="mailto:taurstudios@gmail.com">Contact</a>
+      <div class="copy">&copy; 2026 Taur Studios. Your data stays on your device.</div>
+    </div>
+  </footer>
+
+  <!-- GoatCounter: privacy-friendly, cookieless view counter. -->
+  <script data-goatcounter="https://taur.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

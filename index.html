@@ -4,23 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Taur Studios — Private apps for the things you care about</title>
-  <meta name="description" content="Taur Studios makes private apps that keep your data on your device — no accounts, no ads, no tracking. Equine Companion, Flock Companion, Latent Space, and more." />
+  <meta name="description" content="Taur Studios makes private apps that keep your data on your device — no accounts, no ads, no tracking. Homestead Companion, Equine Companion, Flock Companion, Latent Space, and more." />
 
   <!-- Open Graph (for nice link previews when shared) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Taur Studios" />
-  <meta property="og:description" content="Private apps that keep your data on your device — no accounts, no ads, no tracking." />
+  <meta property="og:description" content="Private apps that keep your data on your device — no accounts, no ads, no tracking. Homestead Companion is out now on iOS and Android." />
   <meta property="og:url" content="https://taur-dev.github.io/" />
-  <meta property="og:image" content="https://taur-dev.github.io/icons/equine.png" />
+  <meta property="og:image" content="https://taur-dev.github.io/icons/homestead.png" />
   <meta name="theme-color" content="#1C1A17" />
 
   <!--
   ============================================================
-  Equine & Flock Companion are both live on the App Store and Google Play.
-  Each has a full landing page: /equine/ and /flock/ (cards link to them).
+  Homestead, Equine & Flock Companion are all live on the App Store and
+  Google Play. Each has a full landing page: /homestead/, /equine/ and /flock/
+  (cards link to them). Homestead leads the grid as the flagship (.app.full).
   Latent Space lives at /latent-space/; the gallery here uses optimized
-  copies in /latent/. Assets: /icons/*.png, /equine/screens/, /flock/screens/,
-  /latent/*.webp — keep these folders together when publishing.
+  copies in /latent/. Assets: /icons/*.png, /homestead/screens/,
+  /equine/screens/, /flock/screens/, /latent/*.webp — keep these folders
+  together when publishing.
   ============================================================
   -->
 
@@ -264,10 +266,38 @@
     <div class="wrap">
       <div class="section-head">
         <h2>The apps</h2>
-        <p>Quiet, complete tools for the people and animals you look after.</p>
+        <p>Quiet, complete tools for the people, plants, and animals you look after.</p>
       </div>
 
       <div class="apps">
+
+        <!-- Homestead Companion -->
+        <div class="app full clickable">
+          <div class="app-head">
+            <img class="app-icon" src="icons/homestead.png" alt="Homestead Companion icon" />
+            <span class="app-name">Homestead Companion</span>
+            <span class="badge">Live</span>
+          </div>
+          <p class="app-desc">One private app for the whole place. Tasks, a shared calendar, one budget for everything, the garden, local weather, photos, and notes — free and complete on its own. Then add only the animals you keep: poultry, goats, rabbits, and equine, each a one-time unlock. No account, no ads, no subscription.</p>
+          <div class="shots">
+            <img src="homestead/screens/homestead-home.webp" alt="Homestead Companion home dashboard" loading="lazy" />
+            <img src="homestead/screens/homestead-calendar.webp" alt="Homestead Companion calendar and reminders" loading="lazy" />
+            <img src="homestead/screens/homestead-budget.webp" alt="Homestead Companion budget" loading="lazy" />
+            <img src="homestead/screens/homestead-herd.webp" alt="Homestead Companion animal records" loading="lazy" />
+            <img src="homestead/screens/homestead-privacy.webp" alt="Homestead Companion privacy settings" loading="lazy" />
+          </div>
+          <div class="store-row">
+            <a class="store-btn" href="https://apps.apple.com/us/app/homestead-companion/id6790952375" target="_blank" rel="noopener">
+              <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+              App Store
+            </a>
+            <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudios.homesteadcompanion" target="_blank" rel="noopener">
+              <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+              Google Play
+            </a>
+          </div>
+          <a class="learn-more stretch" href="homestead/index.html">Learn more about Homestead Companion <span class="arr">→</span></a>
+        </div>
 
         <!-- Equine Companion -->
         <div class="app clickable">
