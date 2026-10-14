@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Taur Studios — Private apps for the things you care about</title>
-  <meta name="description" content="Taur Studios makes private apps that keep your data on your device — no accounts, no ads, no tracking. Homestead Companion, Equine Companion, Flock Companion, Latent Space, and more." />
+  <meta name="description" content="Taur Studios makes private apps that keep your data on your device — no accounts, no ads, no tracking. Homestead Companion, Equine Companion, Flock Companion, Goat Companion, Latent Space, and more." />
 
   <!-- Open Graph (for nice link previews when shared) -->
   <meta property="og:type" content="website" />
@@ -16,12 +16,13 @@
 
   <!--
   ============================================================
-  Homestead, Equine & Flock Companion are all live on the App Store and
-  Google Play. Each has a full landing page: /homestead/, /equine/ and /flock/
-  (cards link to them). Homestead leads the grid as the flagship (.app.full).
+  Homestead, Equine, Flock & Goat Companion are all live on the App Store and
+  Google Play. Each has a full landing page: /homestead/, /equine/, /flock/
+  and /goat/ (cards link to them). Homestead leads the grid as the flagship
+  (.app.full); Goat sits beside the "More Companions" card in the last row.
   Latent Space lives at /latent-space/; the gallery here uses optimized
   copies in /latent/. Assets: /icons/*.png, /homestead/screens/,
-  /equine/screens/, /flock/screens/, /latent/*.webp — keep these folders
+  /equine/screens/, /flock/screens/, /goat/screens/, /latent/*.webp — keep these folders
   together when publishing.
   ============================================================
   -->
@@ -105,6 +106,7 @@
     }
     .app:hover { border-color: var(--gold); background: var(--bg-hover); }
     .app.full { grid-column: 1 / -1; }
+    .apps > .app { min-width: 0; } /* let .shots scroll inside the card instead of widening the grid on phones */
 
     .app-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.2rem; }
     .app-icon {
@@ -171,6 +173,14 @@
     .lineup { display: flex; align-items: center; }
     .lineup img { width: 50px; height: 50px; border-radius: 13px; border: 1px solid var(--border); box-shadow: 0 3px 10px rgba(0,0,0,0.4); }
     .lineup img + img { margin-left: -16px; }
+    .upcoming { list-style: none; display: grid; gap: 0.55rem; margin-top: 0.2rem; }
+    .upcoming li {
+      display: flex; justify-content: space-between; align-items: center; gap: 0.8rem;
+      background: #211E1A; border: 1px solid var(--border); border-radius: 11px; padding: 0.7rem 0.9rem;
+    }
+    .upcoming .n { font-weight: 600; font-size: 0.92rem; }
+    .upcoming .n small { display: block; font-weight: 400; color: var(--muted); font-size: 0.8rem; }
+    .upcoming .st { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); white-space: nowrap; }
 
     /* ---- Latent Space band ---- */
     .latent {
@@ -278,7 +288,7 @@
             <span class="app-name">Homestead Companion</span>
             <span class="badge">Live</span>
           </div>
-          <p class="app-desc">One private app for the whole place. Tasks, a shared calendar, one budget for everything, the garden, local weather, photos, and notes — free and complete on its own. Then add only the animals you keep: poultry, goats, rabbits, and equine, each a one-time unlock. No account, no ads, no subscription.</p>
+          <p class="app-desc">One private app for the whole place. Tasks, a shared calendar, one budget for everything, the garden, local weather, photos, and notes — free and complete on its own. Then add only what you keep: poultry, goats, rabbits, equine, and now beekeeping and vermiculture. Each is a one-time unlock, or save with a Pick Any 3 or Pick Any 5 bundle. No account, no ads, no subscription.</p>
           <div class="shots">
             <img src="homestead/screens/homestead-home.webp" alt="Homestead Companion home dashboard" loading="lazy" />
             <img src="homestead/screens/homestead-calendar.webp" alt="Homestead Companion calendar and reminders" loading="lazy" />
@@ -351,17 +361,47 @@
           <a class="learn-more stretch" href="flock/index.html">Learn more about Flock Companion <span class="arr">→</span></a>
         </div>
 
+        <!-- Goat Companion -->
+        <div class="app clickable">
+          <div class="app-head">
+            <img class="app-icon" src="icons/goat.png" alt="Goat Companion icon" />
+            <span class="app-name">Goat Companion</span>
+            <span class="badge">Live</span>
+          </div>
+          <p class="app-desc">Herd records for dairy, meat, fiber, and pet goats. FAMACHA scores, milk and meat withdrawal warnings, kidding, milk logs, feed, and fiber, all private and on your device. Free.</p>
+          <div class="shots">
+            <img src="goat/screens/goat-home.webp" alt="Goat Companion home dashboard" loading="lazy" />
+            <img src="goat/screens/goat-herd.webp" alt="Goat Companion herd list" loading="lazy" />
+            <img src="goat/screens/goat-profile.webp" alt="Goat Companion goat profile" loading="lazy" />
+          </div>
+          <div class="store-row">
+            <a class="store-btn" href="https://apps.apple.com/us/app/goat-companion/id6814275773" target="_blank" rel="noopener">
+              <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+              App Store
+            </a>
+            <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.taurstudios.goatcompanion" target="_blank" rel="noopener">
+              <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg>
+              Google Play
+            </a>
+          </div>
+          <a class="learn-more stretch" href="goat/index.html">Learn more about Goat Companion <span class="arr">→</span></a>
+        </div>
+
         <!-- More Companions -->
-        <div class="app full">
+        <div class="app">
           <div class="app-head">
             <span class="lineup">
-              <img src="icons/goat.png" alt="Goat Companion icon" />
               <img src="icons/rabbit.png" alt="Rabbit Companion icon" />
             </span>
             <span class="app-name">More Companions</span>
             <span class="badge soon">Soon</span>
           </div>
-          <p class="app-desc">Goat Companion and Rabbit Companion are in the works — same private, on-device foundation. Built on a shared core, so each animal gets a purpose-made app rather than a one-size-fits-all compromise. Follow along to be first to know.</p>
+          <p class="app-desc">Three more on the same private, on-device foundation. Each animal gets an app made for it rather than a one-size-fits-all compromise. Follow along to be first to know.</p>
+          <ul class="upcoming">
+            <li><span class="n">Rabbit Companion<small>Rabbitry, litters, weights, and health</small></span><span class="st">In review</span></li>
+            <li><span class="n">Dog Companion<small>Every dog, plus Pro tools for breeders and exhibitors</small></span><span class="st">In testing</span></li>
+            <li><span class="n">Cat Companion<small>Every cat, plus Pro tools for breeders and exhibitors</small></span><span class="st">In testing</span></li>
+          </ul>
         </div>
 
       </div>

@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homestead Companion — Your whole homestead, private and on your device</title>
-  <meta name="description" content="Homestead Companion is a free, private homestead manager — chores, calendar, budget, garden, weather, and notes on your device. Add one-time modules for poultry, goats, rabbits, and equine. No accounts, no ads, no subscription. Free on iOS and Android." />
+  <meta name="description" content="Homestead Companion is a free, private homestead manager — chores, calendar, budget, garden, weather, and notes on your device. Add one-time modules for poultry, goats, rabbits, equine, beekeeping, and vermiculture, one at a time or in a Pick Any 3 or Pick Any 5 bundle. No accounts, no ads, no subscription. Free on iOS and Android." />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Homestead Companion" />
-  <meta property="og:description" content="One private app for the whole place — chores, budget, garden, and the animals you keep. No accounts, no ads, no subscription." />
+  <meta property="og:description" content="One private app for the whole place — chores, budget, garden, the animals you keep, and now bees and worms. No accounts, no ads, no subscription." />
   <meta property="og:url" content="https://taur-dev.github.io/homestead/" />
   <meta property="og:image" content="https://taur-dev.github.io/icons/homestead.png" />
   <meta name="theme-color" content="#1C1A17" />
@@ -205,7 +205,7 @@
     }
 
     /* ---- Modules ---- */
-    .modules-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .mod {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
       padding: 1.3rem 1.25rem; display: flex; flex-direction: column;
@@ -223,9 +223,23 @@
     .mod .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(192,154,91,0.12);
       display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; }
     .mod .ic svg { width: 20px; height: 20px; stroke: var(--gold-lt); fill: none; stroke-width: 1.8; }
+    .mod .price.new { color: #1C1A17; background: var(--gold-lt); border-color: var(--gold-lt); }
     .modules-note { text-align: center; color: var(--dim); font-size: 0.86rem; margin-top: 1.4rem; }
+
+    /* ---- Bundles ---- */
+    .bundles { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 820px; margin: 2.4rem auto 0; }
+    .bundle {
+      position: relative; border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem 1.35rem;
+      background: radial-gradient(90% 120% at 100% 0%, rgba(192,154,91,0.14) 0%, transparent 60%), var(--bg-card);
+    }
+    .bundle .num { font-family: Georgia, 'Times New Roman', serif; font-size: 2.4rem; font-weight: 700; line-height: 1; color: var(--gold-lt); }
+    .bundle h3 { font-size: 1.1rem; margin: 0.35rem 0 0.3rem; }
+    .bundle p { color: var(--muted); font-size: 0.9rem; }
+    .bundles-head { text-align: center; max-width: 620px; margin: 2.8rem auto 0; }
+    .bundles-head h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }
+    .bundles-head p { color: var(--muted); font-size: 0.96rem; }
     @media (max-width: 860px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 520px) { .modules-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .modules-grid, .bundles { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -249,7 +263,7 @@
         <img class="hero-icon" src="../icons/homestead.png" alt="Homestead Companion app icon" />
         <div class="eyebrow">Homestead Companion</div>
         <h1>Chores, budget, garden, animals — <span class="accent">one private app for the whole place.</span></h1>
-        <p class="lede">A homestead isn't one thing, so it shouldn't take four apps. Homestead Companion keeps your tasks, calendar, budget, garden, weather, and notes in one place — free and complete on its own — then lets you add only the animals you actually keep.</p>
+        <p class="lede">A homestead isn't one thing, so it shouldn't take four apps. Homestead Companion keeps your tasks, calendar, budget, garden, weather, and notes in one place — free and complete on its own — then lets you add only what you actually keep: animals, bees, or a worm bin.</p>
         <div class="chips">
           <span class="chip">No accounts</span>
           <span class="chip">No ads</span>
@@ -340,36 +354,64 @@
   <section class="showcase">
     <div class="wrap">
       <div class="section-head">
-        <h2>Add only the animals you keep</h2>
-        <p>Each species is a module you unlock with a single one-time purchase. Yours forever — no subscription, ever.</p>
+        <h2>Add only what you keep</h2>
+        <p>Each module is a single one-time purchase, or pick several at once in a bundle. Yours forever — no subscription, ever.</p>
       </div>
       <div class="modules-grid">
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="6" ry="8"/></svg></div>
           <h3>Poultry</h3>
           <p>Flocks and individual birds, coops, egg logs, feed and supplements, hatchery and breeding, and full health records.</p>
-          <span class="price">$6.99 once</span>
+          <span class="price">One-time unlock</span>
         </div>
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 8l2-4 3 4h6l3-4 2 4v4a8 8 0 0 1-16 0z"/><circle cx="10" cy="11" r="1"/><circle cx="14" cy="11" r="1"/></svg></div>
           <h3>Goats</h3>
           <p>Your herd, milk logs, kidding records, fiber, feed, and health — dairy, meat, and fiber goats alike.</p>
-          <span class="price">$6.99 once</span>
+          <span class="price">One-time unlock</span>
         </div>
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 10C8 6 7 3 9 3s2 4 2 7"/><path d="M16 10c0-4 1-7-1-7s-2 4-2 7"/><ellipse cx="12" cy="16" rx="6" ry="5"/></svg></div>
           <h3>Rabbits</h3>
           <p>The rabbitry, breeding and litters, daily care, weights, feed, and health for meat, fiber, and pet rabbits.</p>
-          <span class="price">$6.99 once</span>
+          <span class="price">One-time unlock</span>
         </div>
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 20c0-6 3-9 7-9 3 0 5-2 5-5l3 3-2 2c0 5-3 9-8 9z"/><path d="M7 20h10"/></svg></div>
           <h3>Equine</h3>
           <p>Horses, donkeys, mules, and drafts: hoof care and deworming cycles, health records and Coggins dates, weight and body condition, feed, and a work log.</p>
-          <span class="price">$6.99 once</span>
+          <span class="price">One-time unlock</span>
+        </div>
+        <div class="mod">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M4 11h16"/></svg></div>
+          <h3>Beekeeping</h3>
+          <p>Every hive with its queen source and install date, inspections (brood pattern, temperament, stores, frames of bees), treatments with honey-withdrawal dates, and honey and wax harvests.</p>
+          <span class="price new">New</span>
+        </div>
+        <div class="mod">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 15c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/><path d="M3 20h18"/></svg></div>
+          <h3>Vermiculture</h3>
+          <p>Worm bins by species and setup, regular checks on feeding and moisture, and harvest logs for castings and worms, so you know which bin is ready and what it's produced.</p>
+          <span class="price new">New</span>
         </div>
       </div>
-      <p class="modules-note">Every module folds into the free core — its chores land on your calendar, its costs land in your budget. Buy one, buy them all, or none at all.</p>
+      <div class="bundles-head">
+        <h3>Keep a bit of everything? Bundle it.</h3>
+        <p>A bundle lets you choose several modules for less than buying them one at a time. Pick them now or later. The credit is yours until you use it.</p>
+      </div>
+      <div class="bundles">
+        <div class="bundle">
+          <div class="num">3</div>
+          <h3>Pick Any 3</h3>
+          <p>Choose any three modules: say poultry, goats, and bees. Redeem them all at once or one at a time as the place grows.</p>
+        </div>
+        <div class="bundle">
+          <div class="num">5</div>
+          <h3>Pick Any 5</h3>
+          <p>Nearly the whole barn at a bigger discount. Five modules of your choosing, one purchase, no subscription.</p>
+        </div>
+      </div>
+      <p class="modules-note">Every module folds into the free core — its chores land on your calendar, its costs land in your budget. Buy one, bundle a few, or none at all.</p>
     </div>
   </section>
 
@@ -401,11 +443,15 @@
         </details>
         <details>
           <summary>What are the modules, and what do they cost? <span class="plus">+</span></summary>
-          <p>Poultry, goats, rabbits, and equine are each a one-time $6.99 unlock that adds that animal's full record-keeping surface — the herd or flock, health, breeding, and species-specific production like eggs and milk. Buy only the ones you keep. There is no subscription anywhere in the app.</p>
+          <p>Poultry, goats, rabbits, equine, beekeeping, and vermiculture are each a one-time unlock that adds full record-keeping for that part of the place: the animals or hives or bins, health and treatments, and production like eggs, milk, honey, and castings. Buy only the ones you need. There is no subscription anywhere in the app.</p>
         </details>
         <details>
-          <summary>How is this different from Equine or Flock Companion? <span class="plus">+</span></summary>
-          <p>Equine and Flock Companion are single-animal apps for people who keep one kind of animal seriously. Homestead Companion is for a mixed place — a bit of everything, plus a garden and the money and chores that tie it all together — with one calendar and one budget across the lot.</p>
+          <summary>How do the bundles work? <span class="plus">+</span></summary>
+          <p>Pick Any 3 and Pick Any 5 are one-time purchases that give you a credit for that many modules, at a lower price than buying them separately. You choose which modules to redeem it on, right away or whenever you're ready. The current prices are shown in the app and on the store listing.</p>
+        </details>
+        <details>
+          <summary>How is this different from Equine, Flock, or Goat Companion? <span class="plus">+</span></summary>
+          <p>Equine, Flock, and Goat Companion are single-animal apps for people who keep one kind of animal seriously. Homestead Companion is for a mixed place — a bit of everything, plus a garden and the money and chores that tie it all together — with one calendar and one budget across the lot.</p>
         </details>
         <details>
           <summary>Do I need to create an account? <span class="plus">+</span></summary>
@@ -447,6 +493,7 @@
       <a href="../index.html">All Taur Studios apps</a>
       <a href="../equine/index.html">Equine Companion</a>
       <a href="../flock/index.html">Flock Companion</a>
+      <a href="../goat/index.html">Goat Companion</a>
       <a href="https://taur-dev.github.io/legal/homestead-privacy.html" target="_blank" rel="noopener">Privacy</a>
       <a href="https://taur-dev.github.io/legal/homestead-support.html" target="_blank" rel="noopener">Support</a>
       <a href="mailto:taurstudios@gmail.com">Contact</a>
