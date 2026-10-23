@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homestead Companion — Your whole homestead, private and on your device</title>
-  <meta name="description" content="Homestead Companion is a free, private homestead manager — chores, calendar, budget, garden, weather, and notes on your device. Add one-time modules for poultry, goats, rabbits, equine, beekeeping, and vermiculture, one at a time or in a Pick Any 3 or Pick Any 5 bundle. No accounts, no ads, no subscription. Free on iOS and Android." />
+  <title>Homestead Companion: private homestead, farm &amp; garden app for iPhone and Android</title>
+  <meta name="description" content="Homestead Companion is a free homestead manager for iPhone, iPad and Android: chores, calendar, budget, garden, weather and notes. Add one-time modules for poultry, goats, rabbits, equine, beekeeping and vermiculture ($6.99 each). No account, no ads, no subscription." />
+  <link rel="canonical" href="https://taur-dev.github.io/homestead/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Homestead Companion" />
@@ -240,7 +241,242 @@
     .bundles-head p { color: var(--muted); font-size: 0.96rem; }
     @media (max-width: 860px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .modules-grid, .bundles { grid-template-columns: 1fr; } }
+
+    /* ---- At a glance (fact sheet) ---- */
+    .facts { max-width: 860px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); }
+    .facts dl { display: grid; grid-template-columns: 210px 1fr; }
+    .facts dt, .facts dd { padding: 0.85rem 1.25rem; border-top: 1px solid var(--border); font-size: 0.94rem; }
+    .facts dt { color: var(--gold-lt); font-weight: 600; }
+    .facts dd { color: var(--text); }
+    .facts dd span { color: var(--muted); }
+    .facts dl > :nth-child(1), .facts dl > :nth-child(2) { border-top: none; }
+
+    /* ---- Free vs Pro ---- */
+    .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 960px; margin: 0 auto; }
+    .tier { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.4rem; }
+    .tier.pro { border-color: var(--gold); }
+    .tier h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .tier .tag { color: var(--gold-lt); font-size: 0.86rem; font-weight: 600; margin-bottom: 1rem; }
+    .tier ul { list-style: none; display: grid; gap: 0.5rem; }
+    .tier li { color: var(--muted); font-size: 0.92rem; padding-left: 1.1rem; position: relative; }
+    .tier li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .tiers-note { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: 1.2rem; }
+
+    @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .facts dl { grid-template-columns: 1fr; }
+      .facts dd { border-top: none; padding-top: 0; }
+    }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "name": "Homestead Companion",
+      "description": "Homestead Companion is a free homestead manager for iPhone, iPad and Android: chores, calendar, budget, garden, weather and notes. Add one-time modules for poultry, goats, rabbits, equine, beekeeping and vermiculture ($6.99 each). No account, no ads, no subscription.",
+      "url": "https://taur-dev.github.io/homestead/",
+      "image": "https://taur-dev.github.io/icons/homestead.png",
+      "operatingSystem": "iOS 15.1 or later, Android",
+      "applicationCategory": "LifestyleApplication",
+      "isAccessibleForFree": true,
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Homestead Companion (free core)",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Poultry module, one-time purchase",
+          "price": "6.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Goats module, one-time purchase",
+          "price": "6.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Rabbits module, one-time purchase",
+          "price": "6.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Equine module, one-time purchase",
+          "price": "6.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Beekeeping module, one-time purchase",
+          "price": "6.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Vermiculture module, one-time purchase",
+          "price": "6.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pick Any 3 module bundle, one-time purchase",
+          "price": "12.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pick Any 5 module bundle, one-time purchase",
+          "price": "19.99",
+          "priceCurrency": "USD"
+        }
+      ],
+      "downloadUrl": [
+        "https://apps.apple.com/us/app/homestead-companion/id6790952375",
+        "https://play.google.com/store/apps/details?id=com.taurstudios.homesteadcompanion"
+      ],
+      "sameAs": [
+        "https://apps.apple.com/us/app/homestead-companion/id6790952375",
+        "https://play.google.com/store/apps/details?id=com.taurstudios.homesteadcompanion"
+      ],
+      "screenshot": [
+        "https://taur-dev.github.io/homestead/screens/homestead-home.webp",
+        "https://taur-dev.github.io/homestead/screens/homestead-calendar.webp",
+        "https://taur-dev.github.io/homestead/screens/homestead-budget.webp",
+        "https://taur-dev.github.io/homestead/screens/homestead-herd.webp",
+        "https://taur-dev.github.io/homestead/screens/homestead-privacy.webp"
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "Taur Studios",
+        "url": "https://taur-dev.github.io/",
+        "email": "taurstudios@gmail.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Taur Studios",
+        "url": "https://taur-dev.github.io/",
+        "email": "taurstudios@gmail.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Homestead Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Homestead Companion is a private homestead manager for iPhone, iPad and Android. The free app runs the whole place: tasks and reminders, a shared calendar, a budget, the garden, local weather, photos and notes. Optional one-time modules add record-keeping for poultry, goats, rabbits, equine, beekeeping and vermiculture. Everything is stored on your device, and there's no account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a homestead app without a subscription?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, this is one. The core app is free with no time limit, and every paid part is a one-time purchase: modules are $6.99 each in the US, or $12.99 for any three and $19.99 for any five. There are no monthly or yearly fees anywhere in the app."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do I get for free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The whole homestead core: tasks and reminders, a shared calendar with .ics export, a full budget with reports, the garden with beds, plantings and harvest logs, local weather, a photo gallery, and notes. It's a complete app on its own. You never have to buy anything."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the modules, and what do they cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Poultry, goats, rabbits, equine, beekeeping and vermiculture are each a one-time unlock ($6.99 in the US) that adds full record-keeping for that part of the place: the animals, hives or bins, their health and treatments, and production like eggs, milk, honey and castings. Each module's tasks land on your calendar and its costs land in your budget."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do the bundles work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pick Any 3 ($12.99) and Pick Any 5 ($19.99) are one-time purchases that give you credit for that many modules, for less than buying them one at a time. You choose which modules to spend it on, right away or whenever you're ready. Prices are US; the store shows your local price."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it track my garden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, for free. Keep your beds and plantings, log harvests with running totals, and see a simple crop calendar alongside the rest of your chores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I keep beekeeping records?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, with the Beekeeping module. Track every hive with its queen source and install date, log inspections (brood pattern, temperament, stores, frames of bees), record treatments with honey-withdrawal dates, and log honey and wax harvests."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I track a worm bin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, with the Vermiculture module. Track bins by species and setup, log regular checks on feeding and moisture, and record harvests of castings and worms, so you know which bin is ready."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from Equine, Flock, or Goat Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Equine, Flock and Goat Companion are single-animal apps for people who keep one kind of animal seriously. Homestead Companion is for a mixed place, a bit of everything plus a garden, with one calendar and one budget across the lot."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to create an account?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is my data stored, and what if I get a new phone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Entirely on your phone or tablet. There's no Taur Studios server holding your homestead's information, so there's nothing to be breached or sold. To move to a new phone, export a backup and restore it there."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work without internet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It only goes online for three optional things: checking a purchase with the app store, a weather forecast if you turn weather on (approximate location to Open-Meteo, which doesn't keep it), and voice-to-text if you use it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who makes Homestead Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I do. I'm Taur, and Taur Studios is my one-person studio. I built this because homestead records end up scattered across notebooks, spreadsheets and apps that want your data. I also make Equine, Flock and Goat Companion. Questions and ideas go to taurstudios@gmail.com."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -288,6 +524,34 @@
       </div>
     </div>
   </header>
+
+
+  <!-- At a glance: plain facts, for people and for search/AI assistants -->
+  <section id="facts">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Homestead Companion at a glance</h2>
+        <p>The short version, in plain terms.</p>
+      </div>
+      <div class="facts">
+        <dl>
+          <dt>What it is</dt><dd>A homestead manager for mixed places: tasks, calendar, budget, garden, weather and notes, with optional add-on modules for animals, bees and worms.</dd>
+          <dt>Platforms</dt><dd>iPhone and iPad (iOS 15.1 or later) and Android</dd>
+          <dt>Price</dt><dd>The core app is free and complete on its own. Optional modules: <strong>$6.99 each, one time</strong> (US price). Bundles: <strong>Pick Any 3 for $12.99</strong> or <strong>Pick Any 5 for $19.99</strong>. <span>No subscription. Family Sharing supported on iPhone.</span></dd>
+          <dt>Modules</dt><dd>Poultry, goats, rabbits, equine (horses, donkeys, mules and drafts), beekeeping and vermiculture</dd>
+          <dt>Account</dt><dd>None. No sign-up, email or password.</dd>
+          <dt>Where your data lives</dt><dd>On your phone or tablet only. No cloud, no server, no sync.</dd>
+          <dt>Ads &amp; tracking</dt><dd>None. No ads, no analytics or tracking SDKs.</dd>
+          <dt>Works offline</dt><dd>Yes. Reminders are local notifications that fire with or without signal.</dd>
+          <dt>Network use</dt><dd>Only three optional, feature-tied things: checking a purchase with the app store, a local forecast if you turn weather on <span>(your approximate location goes to Open-Meteo, which doesn't keep it)</span>, and voice-to-text if you use it <span>(handled by your phone's built-in speech recognition)</span>.</dd>
+          <dt>Backups</dt><dd>Export a backup file and restore it on a new phone.</dd>
+          <dt>Made by</dt><dd>Taur Studios, a one-person indie studio. Also makes Equine, Flock and Goat Companion.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
 
   <!-- Showcase -->
   <section class="showcase">
@@ -362,37 +626,37 @@
           <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="6" ry="8"/></svg></div>
           <h3>Poultry</h3>
           <p>Flocks and individual birds, coops, egg logs, feed and supplements, hatchery and breeding, and full health records.</p>
-          <span class="price">One-time unlock</span>
+          <span class="price">$6.99, one time</span>
         </div>
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 8l2-4 3 4h6l3-4 2 4v4a8 8 0 0 1-16 0z"/><circle cx="10" cy="11" r="1"/><circle cx="14" cy="11" r="1"/></svg></div>
           <h3>Goats</h3>
           <p>Your herd, milk logs, kidding records, fiber, feed, and health — dairy, meat, and fiber goats alike.</p>
-          <span class="price">One-time unlock</span>
+          <span class="price">$6.99, one time</span>
         </div>
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 10C8 6 7 3 9 3s2 4 2 7"/><path d="M16 10c0-4 1-7-1-7s-2 4-2 7"/><ellipse cx="12" cy="16" rx="6" ry="5"/></svg></div>
           <h3>Rabbits</h3>
           <p>The rabbitry, breeding and litters, daily care, weights, feed, and health for meat, fiber, and pet rabbits.</p>
-          <span class="price">One-time unlock</span>
+          <span class="price">$6.99, one time</span>
         </div>
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 20c0-6 3-9 7-9 3 0 5-2 5-5l3 3-2 2c0 5-3 9-8 9z"/><path d="M7 20h10"/></svg></div>
           <h3>Equine</h3>
           <p>Horses, donkeys, mules, and drafts: hoof care and deworming cycles, health records and Coggins dates, weight and body condition, feed, and a work log.</p>
-          <span class="price">One-time unlock</span>
+          <span class="price">$6.99, one time</span>
         </div>
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M4 11h16"/></svg></div>
           <h3>Beekeeping</h3>
           <p>Every hive with its queen source and install date, inspections (brood pattern, temperament, stores, frames of bees), treatments with honey-withdrawal dates, and honey and wax harvests.</p>
-          <span class="price new">New</span>
+          <span class="price new">New · $6.99</span>
         </div>
         <div class="mod">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 15c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/><path d="M3 20h18"/></svg></div>
           <h3>Vermiculture</h3>
           <p>Worm bins by species and setup, regular checks on feeding and moisture, and harvest logs for castings and worms, so you know which bin is ready and what it's produced.</p>
-          <span class="price new">New</span>
+          <span class="price new">New · $6.99</span>
         </div>
       </div>
       <div class="bundles-head">
@@ -402,16 +666,16 @@
       <div class="bundles">
         <div class="bundle">
           <div class="num">3</div>
-          <h3>Pick Any 3</h3>
+          <h3>Pick Any 3: $12.99</h3>
           <p>Choose any three modules: say poultry, goats, and bees. Redeem them all at once or one at a time as the place grows.</p>
         </div>
         <div class="bundle">
           <div class="num">5</div>
-          <h3>Pick Any 5</h3>
+          <h3>Pick Any 5: $19.99</h3>
           <p>Nearly the whole barn at a bigger discount. Five modules of your choosing, one purchase, no subscription.</p>
         </div>
       </div>
-      <p class="modules-note">Every module folds into the free core — its chores land on your calendar, its costs land in your budget. Buy one, bundle a few, or none at all.</p>
+      <p class="modules-note">Every module folds into the free core — its chores land on your calendar, its costs land in your budget. Buy one, bundle a few, or none at all. Prices are US; the store shows your local price.</p>
     </div>
   </section>
 
@@ -421,7 +685,7 @@
       <div>
         <h2>Your homestead's records stay on your device. Full stop.</h2>
         <p>Most apps in this space want an account, then quietly build a business on what you put in it. Homestead Companion does the opposite — it's built privacy-first, by one person, because what happens on your place is your business.</p>
-        <p>There's no sign-up and no server holding your information. The app works fully offline; the only optional outbound calls are weather and voice-to-text, and neither carries personal data the developer can see.</p>
+        <p>There's no sign-up and no server holding your information. The app works fully offline. It only goes online for three optional things: checking a purchase with the app store, a weather forecast if you turn it on (approximate location to Open-Meteo, which doesn't keep it), and voice-to-text if you use it.</p>
       </div>
       <ul class="promise-list">
         <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No account required.</strong> Open the app and start — nothing to sign up for.</span></li>
@@ -438,32 +702,56 @@
       <div class="section-head"><h2>Questions, answered</h2></div>
       <div class="faq-list">
         <details open>
+          <summary>What is Homestead Companion? <span class="plus">+</span></summary>
+          <p>Homestead Companion is a private homestead manager for iPhone, iPad and Android. The free app runs the whole place: tasks and reminders, a shared calendar, a budget, the garden, local weather, photos and notes. Optional one-time modules add record-keeping for poultry, goats, rabbits, equine, beekeeping and vermiculture. Everything is stored on your device, and there's no account.</p>
+        </details>
+        <details>
+          <summary>Is there a homestead app without a subscription? <span class="plus">+</span></summary>
+          <p>Yes, this is one. The core app is free with no time limit, and every paid part is a one-time purchase: modules are $6.99 each in the US, or $12.99 for any three and $19.99 for any five. There are no monthly or yearly fees anywhere in the app.</p>
+        </details>
+        <details>
           <summary>What do I get for free? <span class="plus">+</span></summary>
-          <p>The whole homestead core: tasks and reminders, a shared calendar with .ics export, a full budget with reports, the garden with beds and harvest logs, local weather, a photo gallery, and notes. It's a complete app on its own — you never have to buy anything.</p>
+          <p>The whole homestead core: tasks and reminders, a shared calendar with .ics export, a full budget with reports, the garden with beds, plantings and harvest logs, local weather, a photo gallery, and notes. It's a complete app on its own. You never have to buy anything.</p>
         </details>
         <details>
           <summary>What are the modules, and what do they cost? <span class="plus">+</span></summary>
-          <p>Poultry, goats, rabbits, equine, beekeeping, and vermiculture are each a one-time unlock that adds full record-keeping for that part of the place: the animals or hives or bins, health and treatments, and production like eggs, milk, honey, and castings. Buy only the ones you need. There is no subscription anywhere in the app.</p>
+          <p>Poultry, goats, rabbits, equine, beekeeping and vermiculture are each a one-time unlock ($6.99 in the US) that adds full record-keeping for that part of the place: the animals, hives or bins, their health and treatments, and production like eggs, milk, honey and castings. Each module's tasks land on your calendar and its costs land in your budget.</p>
         </details>
         <details>
           <summary>How do the bundles work? <span class="plus">+</span></summary>
-          <p>Pick Any 3 and Pick Any 5 are one-time purchases that give you a credit for that many modules, at a lower price than buying them separately. You choose which modules to redeem it on, right away or whenever you're ready. The current prices are shown in the app and on the store listing.</p>
+          <p>Pick Any 3 ($12.99) and Pick Any 5 ($19.99) are one-time purchases that give you credit for that many modules, for less than buying them one at a time. You choose which modules to spend it on, right away or whenever you're ready. Prices are US; the store shows your local price.</p>
+        </details>
+        <details>
+          <summary>Can it track my garden? <span class="plus">+</span></summary>
+          <p>Yes, for free. Keep your beds and plantings, log harvests with running totals, and see a simple crop calendar alongside the rest of your chores.</p>
+        </details>
+        <details>
+          <summary>Can I keep beekeeping records? <span class="plus">+</span></summary>
+          <p>Yes, with the Beekeeping module. Track every hive with its queen source and install date, log inspections (brood pattern, temperament, stores, frames of bees), record treatments with honey-withdrawal dates, and log honey and wax harvests.</p>
+        </details>
+        <details>
+          <summary>Can I track a worm bin? <span class="plus">+</span></summary>
+          <p>Yes, with the Vermiculture module. Track bins by species and setup, log regular checks on feeding and moisture, and record harvests of castings and worms, so you know which bin is ready.</p>
         </details>
         <details>
           <summary>How is this different from Equine, Flock, or Goat Companion? <span class="plus">+</span></summary>
-          <p>Equine, Flock, and Goat Companion are single-animal apps for people who keep one kind of animal seriously. Homestead Companion is for a mixed place — a bit of everything, plus a garden and the money and chores that tie it all together — with one calendar and one budget across the lot.</p>
+          <p>Equine, Flock and Goat Companion are single-animal apps for people who keep one kind of animal seriously. Homestead Companion is for a mixed place, a bit of everything plus a garden, with one calendar and one budget across the lot.</p>
         </details>
         <details>
           <summary>Do I need to create an account? <span class="plus">+</span></summary>
           <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
         </details>
         <details>
-          <summary>Where is my data stored? <span class="plus">+</span></summary>
-          <p>Entirely on your phone or tablet. There's no Taur Studios server holding your homestead's information, so there's nothing to be breached or sold. If you delete the app, your data goes with it — that's the point.</p>
+          <summary>Where is my data stored, and what if I get a new phone? <span class="plus">+</span></summary>
+          <p>Entirely on your phone or tablet. There's no Taur Studios server holding your homestead's information, so there's nothing to be breached or sold. To move to a new phone, export a backup and restore it there.</p>
         </details>
         <details>
           <summary>Does it work without internet? <span class="plus">+</span></summary>
-          <p>Yes. The app is fully usable offline. The optional online features are weather, which sends only an approximate location to Open-Meteo at request time, and voice-to-text, which uses your device's own speech recognition.</p>
+          <p>Yes. It only goes online for three optional things: checking a purchase with the app store, a weather forecast if you turn weather on (approximate location to Open-Meteo, which doesn't keep it), and voice-to-text if you use it.</p>
+        </details>
+        <details>
+          <summary>Who makes Homestead Companion? <span class="plus">+</span></summary>
+          <p>I do. I'm Taur, and Taur Studios is my one-person studio. I built this because homestead records end up scattered across notebooks, spreadsheets and apps that want your data. I also make Equine, Flock and Goat Companion. Questions and ideas go to taurstudios@gmail.com.</p>
         </details>
       </div>
     </div>

@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Goat Companion — Your whole herd, private and on your device</title>
-  <meta name="description" content="Goat Companion keeps your herd's health, FAMACHA scores, medication withdrawals, kidding, milk, feed, and fiber records on your device. No accounts, no ads, no tracking. Free on iOS and Android." />
+  <title>Goat Companion: private goat herd tracker app for iPhone and Android</title>
+  <meta name="description" content="Goat Companion is a free goat herd app for iPhone, iPad and Android. Track FAMACHA scores, medications with milk and meat withdrawal warnings, health, weights, milk and feed. Pro adds kidding, fiber and 4-H project books. No account, no ads, no subscription. Pro is a one-time $9.99." />
+  <link rel="canonical" href="https://taur-dev.github.io/goat/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Goat Companion" />
@@ -204,7 +205,210 @@
       .hero-art .p1, .hero-art .p3 { display: none; }
       .hero-art .p2 { width: 230px; margin: 0; transform: none; }
     }
+
+    /* ---- At a glance (fact sheet) ---- */
+    .facts { max-width: 860px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); }
+    .facts dl { display: grid; grid-template-columns: 210px 1fr; }
+    .facts dt, .facts dd { padding: 0.85rem 1.25rem; border-top: 1px solid var(--border); font-size: 0.94rem; }
+    .facts dt { color: var(--gold-lt); font-weight: 600; }
+    .facts dd { color: var(--text); }
+    .facts dd span { color: var(--muted); }
+    .facts dl > :nth-child(1), .facts dl > :nth-child(2) { border-top: none; }
+
+    /* ---- Free vs Pro ---- */
+    .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 960px; margin: 0 auto; }
+    .tier { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.4rem; }
+    .tier.pro { border-color: var(--gold); }
+    .tier h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .tier .tag { color: var(--gold-lt); font-size: 0.86rem; font-weight: 600; margin-bottom: 1rem; }
+    .tier ul { list-style: none; display: grid; gap: 0.5rem; }
+    .tier li { color: var(--muted); font-size: 0.92rem; padding-left: 1.1rem; position: relative; }
+    .tier li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .tiers-note { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: 1.2rem; }
+
+    @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .facts dl { grid-template-columns: 1fr; }
+      .facts dd { border-top: none; padding-top: 0; }
+    }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "name": "Goat Companion",
+      "alternateName": [
+        "Goat Companion: Herd Tracker"
+      ],
+      "description": "Goat Companion is a free goat herd app for iPhone, iPad and Android. Track FAMACHA scores, medications with milk and meat withdrawal warnings, health, weights, milk and feed. Pro adds kidding, fiber and 4-H project books. No account, no ads, no subscription. Pro is a one-time $9.99.",
+      "url": "https://taur-dev.github.io/goat/",
+      "image": "https://taur-dev.github.io/icons/goat.png",
+      "operatingSystem": "iOS 15.1 or later, Android",
+      "applicationCategory": "LifestyleApplication",
+      "isAccessibleForFree": true,
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Goat Companion (free)",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Goat Companion Pro, one-time purchase",
+          "price": "9.99",
+          "priceCurrency": "USD"
+        }
+      ],
+      "downloadUrl": [
+        "https://apps.apple.com/us/app/goat-companion/id6814275773",
+        "https://play.google.com/store/apps/details?id=com.taurstudios.goatcompanion"
+      ],
+      "sameAs": [
+        "https://apps.apple.com/us/app/goat-companion/id6814275773",
+        "https://play.google.com/store/apps/details?id=com.taurstudios.goatcompanion"
+      ],
+      "screenshot": [
+        "https://taur-dev.github.io/goat/screens/goat-home.webp",
+        "https://taur-dev.github.io/goat/screens/goat-herd.webp",
+        "https://taur-dev.github.io/goat/screens/goat-profile.webp",
+        "https://taur-dev.github.io/goat/screens/goat-knowledge.webp"
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "Taur Studios",
+        "url": "https://taur-dev.github.io/",
+        "email": "taurstudios@gmail.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Taur Studios",
+        "url": "https://taur-dev.github.io/",
+        "email": "taurstudios@gmail.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Goat Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Goat Companion is a private herd-management app for goat keepers, on iPhone, iPad and Android. It tracks each goat's health, FAMACHA scores, medications (with milk and meat withdrawal warnings), weights, milk and feed. Pro adds breeding, kidding and fiber records. Everything is stored on your device, and there's no account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a goat app without a subscription?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, this is one. Goat Companion is free to download and use, with no time limit. The optional Pro unlock is a one-time purchase ($9.99 in the US). There are no monthly or yearly fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which goats does it support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All of them. Nubians, Boers, Nigerian Dwarves, Angoras, and every other dairy, meat, fiber and pet breed. Tag each goat by purpose and filter the herd however you like."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's free and what's in Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free covers day-to-day herd care: goat profiles, weights with ADG, FAMACHA scoring, medications with withdrawal warnings, health records, the milk log, feed, tasks, expenses, PDF health reports and backups. Pro adds breeding, pregnancy and kidding records, fiber tracking, FAMACHA trends and lactation curves, income and profit-and-loss reports, CSV export, the printable herd project book, and journal photos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it track FAMACHA scores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Score each goat and keep the full history in the free version, so you can catch a parasite problem early. Pro adds a trend chart for each goat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is withdrawal tracking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many medications mean milk or meat shouldn't be used for a set period afterward. Log the medication and Goat Companion counts down both windows and warns you while a goat is still in withdrawal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it track kidding and due dates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, with Pro. Record breedings, follow each pregnancy with a due-date countdown, and log kiddings (litter size, birth weights and outcomes) linked back to the dam and sire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I log milk production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The free milk log keeps per-goat and per-day totals. Pro adds a lactation curve for each doe."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it good for 4-H or FFA projects?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Pro makes a printable herd project book (PDF) and exports your records to CSV. Every version can share PDF health reports."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I keep goats and other animals. Is there one app for everything?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes: Homestead Companion covers a mixed place, with goats as one of several add-on modules alongside a shared calendar, budget and garden. Goat Companion is for people who keep goats seriously and want the deepest tools for them."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to create an account?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is my data stored, and what if I get a new phone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On your phone or tablet, and nowhere else. To move to a new phone, make a backup (password-protected if you like), save it wherever you choose, and restore it on the new device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work without internet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It only goes online for three optional things: checking a Pro purchase with the app store, your local weather when you view it (approximate location to Open-Meteo, which doesn't keep it), and voice-to-text if you use it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who makes Goat Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I do. I'm Taur, and Taur Studios is my one-person studio. I build private, no-account apps for people who keep animals, including Equine Companion, Flock Companion and Homestead Companion. Questions and ideas go to taurstudios@gmail.com."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -253,6 +457,34 @@
     </div>
   </header>
 
+
+  <!-- At a glance: plain facts, for people and for search/AI assistants -->
+  <section id="facts">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Goat Companion at a glance</h2>
+        <p>The short version, in plain terms.</p>
+      </div>
+      <div class="facts">
+        <dl>
+          <dt>What it is</dt><dd>A herd-management app for goat keepers: health, FAMACHA scores, medication withdrawals, weights, milk, feed and tasks. Pro adds breeding, kidding and fiber.</dd>
+          <dt>Goats</dt><dd>Every breed and purpose: dairy, meat, fiber and pet herds</dd>
+          <dt>Platforms</dt><dd>iPhone and iPad (iOS 15.1 or later) and Android</dd>
+          <dt>Price</dt><dd>Free to download and use. Optional Pro unlock: <strong>$9.99, one time</strong> (US price). <span>No subscription.</span></dd>
+          <dt>Account</dt><dd>None. No sign-up, email or password.</dd>
+          <dt>Where your data lives</dt><dd>On your phone or tablet only. No cloud, no server, no sync.</dd>
+          <dt>Ads &amp; tracking</dt><dd>None. No ads, no analytics or tracking SDKs.</dd>
+          <dt>Works offline</dt><dd>Yes.</dd>
+          <dt>Network use</dt><dd>Only three optional, feature-tied things: checking a Pro purchase with the app store, a local forecast when you view weather <span>(your approximate location goes to Open-Meteo, which doesn't keep it)</span>, and voice-to-text if you use it <span>(handled by your phone's built-in speech recognition)</span>.</dd>
+          <dt>Backups</dt><dd>A backup of the whole herd, optionally password-protected, saved wherever you choose and restorable on a new phone.</dd>
+          <dt>Made by</dt><dd>Taur Studios, a one-person indie studio. Also makes Equine, Flock and Homestead Companion.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
   <!-- Showcase -->
   <section class="showcase">
     <div class="wrap">
@@ -291,25 +523,72 @@
         </div>
         <div class="feat">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
-          <h3>Breeding &amp; kidding</h3>
+          <h3>Breeding &amp; kidding (Pro)</h3>
           <p>Breeding dates, due-date countdowns, and kidding logs linked back to dam and sire, so next season's plan is built on real numbers.</p>
         </div>
         <div class="feat">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg></div>
           <h3>Milk, feed &amp; fiber</h3>
-          <p>Log milk per doe and watch the trend, keep feed stock with low-stock alerts, and record shearing dates, weights, and grades.</p>
+          <p>Log milk per doe and watch the trend, keep feed stock with low-stock alerts, and, with Pro, record shearing dates, weights, and grades.</p>
         </div>
         <div class="feat">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 7-8"/><path d="M16 4h5v5"/></svg></div>
           <h3>Does the herd pay?</h3>
-          <p>Income and expenses with running totals, plus weight tracking with average daily gain worked out for you.</p>
+          <p>Track expenses for free (Pro adds income and profit-and-loss reports), plus weight tracking with average daily gain worked out for you.</p>
         </div>
         <div class="feat">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h6"/></svg></div>
           <h3>Records you can hand over</h3>
-          <p>PDF health reports for your vet, CSV export, and a printable herd project book for 4-H and FFA.</p>
+          <p>PDF health reports for your vet. Pro adds CSV export and a printable herd project book for 4-H and FFA.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- Free vs Pro -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Free for everyday herd care. Pro if you breed, show or shear.</h2>
+        <p>The free version isn't a trial. It's the complete daily app, with no time limit and no account.</p>
+      </div>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free</h3>
+          <div class="tag">Free forever</div>
+          <ul>
+            <li>Goat profiles: breed, sex, birthdate, tag or ear notch, dam and sire, and photo</li>
+            <li>Herd list with quick filters and search</li>
+            <li>Weight tracking with average daily gain (ADG) worked out for you</li>
+            <li>FAMACHA scoring with a running history</li>
+            <li>Medication tracker with milk and meat withdrawal warnings</li>
+            <li>Health events: illness, injury, vet visits, vaccinations and hoof trims</li>
+            <li>Herd health score and per-goat health-check reminders</li>
+            <li>Shareable PDF herd health reports for your vet</li>
+            <li>Milk log with per-goat and per-day totals</li>
+            <li>Feed inventory with low-stock alerts and reorder reminders</li>
+            <li>Task reminders, with suggested tasks for kidding season and shearing</li>
+            <li>Expense tracking</li>
+            <li>Journal with voice input, local weather, a goat care knowledge base, and App Lock</li>
+            <li>Backup and restore, optionally password-protected</li>
+          </ul>
+        </div>
+        <div class="tier pro">
+          <h3>Pro</h3>
+          <div class="tag">$9.99, one time (US)</div>
+          <ul>
+            <li>Breeding records and pregnancy tracking with due-date countdowns</li>
+            <li>Kidding logs: litter size, birth weights and outcomes, linked to dam and sire</li>
+            <li>Fiber records: shearing dates, weights and grades</li>
+            <li>FAMACHA trend charts and lactation curves</li>
+            <li>Income tracking and profit-and-loss reports</li>
+            <li>CSV export and a printable herd project book (PDF) for 4-H and FFA</li>
+            <li>Photos on journal entries</li>
+          </ul>
+        </div>
+      </div>
+      <p class="tiers-note">The store shows your local price. Pro is a one-time purchase, not a subscription.</p>
     </div>
   </section>
 
@@ -336,28 +615,60 @@
       <div class="section-head"><h2>Questions, answered</h2></div>
       <div class="faq-list">
         <details open>
+          <summary>What is Goat Companion? <span class="plus">+</span></summary>
+          <p>Goat Companion is a private herd-management app for goat keepers, on iPhone, iPad and Android. It tracks each goat's health, FAMACHA scores, medications (with milk and meat withdrawal warnings), weights, milk and feed. Pro adds breeding, kidding and fiber records. Everything is stored on your device, and there's no account.</p>
+        </details>
+        <details>
+          <summary>Is there a goat app without a subscription? <span class="plus">+</span></summary>
+          <p>Yes, this is one. Goat Companion is free to download and use, with no time limit. The optional Pro unlock is a one-time purchase ($9.99 in the US). There are no monthly or yearly fees.</p>
+        </details>
+        <details>
           <summary>Which goats does it support? <span class="plus">+</span></summary>
-          <p>All of them. Nubians, Boers, Nigerian Dwarves, Angoras, and every other dairy, meat, fiber, and pet breed. Tag each goat by purpose and filter the herd however you like.</p>
+          <p>All of them. Nubians, Boers, Nigerian Dwarves, Angoras, and every other dairy, meat, fiber and pet breed. Tag each goat by purpose and filter the herd however you like.</p>
         </details>
         <details>
-          <summary>How much does it cost? <span class="plus">+</span></summary>
-          <p>Goat Companion is free to download and use on the App Store and Google Play. An optional one-time Pro unlock adds breeding and kidding records, fiber tracking, financial reports and CSV export, the printable herd project book, and journal photos. There's no subscription.</p>
+          <summary>What's free and what's in Pro? <span class="plus">+</span></summary>
+          <p>Free covers day-to-day herd care: goat profiles, weights with ADG, FAMACHA scoring, medications with withdrawal warnings, health records, the milk log, feed, tasks, expenses, PDF health reports and backups. Pro adds breeding, pregnancy and kidding records, fiber tracking, FAMACHA trends and lactation curves, income and profit-and-loss reports, CSV export, the printable herd project book, and journal photos.</p>
         </details>
         <details>
-          <summary>Do I need to create an account? <span class="plus">+</span></summary>
-          <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
+          <summary>Can it track FAMACHA scores? <span class="plus">+</span></summary>
+          <p>Yes. Score each goat and keep the full history in the free version, so you can catch a parasite problem early. Pro adds a trend chart for each goat.</p>
         </details>
         <details>
           <summary>What is withdrawal tracking? <span class="plus">+</span></summary>
           <p>Many medications mean milk or meat shouldn't be used for a set period afterward. Log the medication and Goat Companion counts down both windows and warns you while a goat is still in withdrawal.</p>
         </details>
         <details>
-          <summary>I keep goats and other animals. Is there one app for everything? <span class="plus">+</span></summary>
-          <p>Yes: <a href="../homestead/index.html">Homestead Companion</a> covers a mixed place, with goats as one of several add-on modules alongside a shared calendar, budget, and garden. Goat Companion is for people who keep goats seriously and want the deepest tools for them.</p>
+          <summary>Can it track kidding and due dates? <span class="plus">+</span></summary>
+          <p>Yes, with Pro. Record breedings, follow each pregnancy with a due-date countdown, and log kiddings (litter size, birth weights and outcomes) linked back to the dam and sire.</p>
         </details>
         <details>
-          <summary>Where is my data stored? <span class="plus">+</span></summary>
-          <p>On your phone or tablet, and nowhere else. There's no Taur Studios server holding your herd's information, so there's nothing to be breached or sold. To move to a new phone, make a backup and restore it there.</p>
+          <summary>Can I log milk production? <span class="plus">+</span></summary>
+          <p>Yes. The free milk log keeps per-goat and per-day totals. Pro adds a lactation curve for each doe.</p>
+        </details>
+        <details>
+          <summary>Is it good for 4-H or FFA projects? <span class="plus">+</span></summary>
+          <p>Yes. Pro makes a printable herd project book (PDF) and exports your records to CSV. Every version can share PDF health reports.</p>
+        </details>
+        <details>
+          <summary>I keep goats and other animals. Is there one app for everything? <span class="plus">+</span></summary>
+          <p>Yes: <a href="../homestead/index.html">Homestead Companion</a> covers a mixed place, with goats as one of several add-on modules alongside a shared calendar, budget and garden. Goat Companion is for people who keep goats seriously and want the deepest tools for them.</p>
+        </details>
+        <details>
+          <summary>Do I need to create an account? <span class="plus">+</span></summary>
+          <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
+        </details>
+        <details>
+          <summary>Where is my data stored, and what if I get a new phone? <span class="plus">+</span></summary>
+          <p>On your phone or tablet, and nowhere else. To move to a new phone, make a backup (password-protected if you like), save it wherever you choose, and restore it on the new device.</p>
+        </details>
+        <details>
+          <summary>Does it work without internet? <span class="plus">+</span></summary>
+          <p>Yes. It only goes online for three optional things: checking a Pro purchase with the app store, your local weather when you view it (approximate location to Open-Meteo, which doesn't keep it), and voice-to-text if you use it.</p>
+        </details>
+        <details>
+          <summary>Who makes Goat Companion? <span class="plus">+</span></summary>
+          <p>I do. I'm Taur, and Taur Studios is my one-person studio. I build private, no-account apps for people who keep animals, including Equine Companion, Flock Companion and Homestead Companion. Questions and ideas go to taurstudios@gmail.com.</p>
         </details>
       </div>
     </div>
@@ -385,6 +696,8 @@
   <footer>
     <div class="wrap">
       <a href="../index.html">All Taur Studios apps</a>
+      <a href="../equine/index.html">Equine Companion</a>
+      <a href="../flock/index.html">Flock Companion</a>
       <a href="../homestead/index.html">Homestead Companion</a>
       <a href="https://taur-dev.github.io/legal/goat-privacy.html" target="_blank" rel="noopener">Privacy</a>
       <a href="https://taur-dev.github.io/legal/goat-support.html" target="_blank" rel="noopener">Support</a>
