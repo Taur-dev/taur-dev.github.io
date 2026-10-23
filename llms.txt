@@ -1,0 +1,22 @@
+# Taur Studios
+
+> Taur Studios is a one-person indie studio making private, local-first mobile apps for people who keep animals. Every app is free to download and use, keeps all records on the user's device, and needs no account. There are no ads and no tracking. Paid features are one-time unlocks, never subscriptions. Apps are available on the App Store (iPhone and iPad) and Google Play (Android).
+
+## Apps
+
+- [Flock Companion](https://taur-dev.github.io/flock/): backyard chicken and poultry app (chickens, ducks, quail, turkeys, guinea fowl, geese, pigeons, peafowl, doves, pheasants). Free features: egg logging and charts, bird profiles, health and medication records with egg-withdrawal countdowns, coop, feed and tasks. Optional Pro, $9.99 one time (US): incubation and hatching, breeding records, financial reports with cost per egg, CSV export.
+- [Equine Companion](https://taur-dev.github.io/equine/): horse care and records app for owners, riders, trainers and barns. Free features: unlimited horses, health records, farrier, vaccine and deworming reminders, Coggins and document vault, tack room, budget, PDF vet reports, encrypted backup. Optional Pro, $9.99 one time (US): GPS ride tracking, training and competition logs, breeding module, trainer mode.
+- [Goat Companion](https://taur-dev.github.io/goat/): goat herd management app. Free features include herd health, FAMACHA scores, medication withdrawals, milk and feed records. Optional one-time Pro unlock: breeding and kidding records, fiber tracking, financial reports, CSV export, and a printable herd project book.
+- [Homestead Companion](https://taur-dev.github.io/homestead/): whole-homestead manager for chores, calendar, budget, garden, weather and notes. Optional one-time modules for poultry, goats, rabbits, equine, beekeeping and vermiculture, also sold as Pick Any 3 and Pick Any 5 bundles.
+
+## Facts that apply to every app
+
+- No account, sign-up or email needed.
+- Records are stored only on the device. There is no server or cloud sync. Users move between phones with a backup file.
+- No ads, analytics or tracking SDKs.
+- They work offline. Network use is limited to optional, feature-tied calls: verifying a purchase with the app store, a weather forecast from Open-Meteo if weather is turned on, and the phone's built-in speech recognition for voice-to-text.
+
+## Contact
+
+- Email: taurstudios@gmail.com
+- Support and privacy policies: https://taur-dev.github.io/legal/

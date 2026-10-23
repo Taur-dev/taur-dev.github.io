@@ -1,0 +1,5 @@
+# Taur Studios — everything here is public, and search engines and AI assistants are welcome to read it.
+User-agent: *
+Allow: /
+
+Sitemap: https://taur-dev.github.io/sitemap.xml

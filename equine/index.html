@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Equine Companion — Every horse record, private and on your device</title>
-  <meta name="description" content="Equine Companion keeps every horse record, reminder, and ride on your device — health, documents, tack, training, and shareable vet reports. No accounts, no ads, no tracking. Free on iOS and Android." />
+  <title>Equine Companion: private horse care &amp; records app for iPhone and Android</title>
+  <meta name="description" content="Equine Companion is a free horse care app for iPhone, iPad and Android. Keep health records, farrier and vaccine reminders, Coggins and other documents, tack and costs, with shareable vet reports. No account, no ads, no subscription. Pro is a one-time $9.99." />
+  <link rel="canonical" href="https://taur-dev.github.io/equine/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Equine Companion" />
@@ -203,7 +204,207 @@
       .hero-art .p1, .hero-art .p3 { display: none; }
       .hero-art .p2 { width: 230px; margin: 0; transform: none; }
     }
+
+    /* ---- At a glance (fact sheet) ---- */
+    .facts { max-width: 860px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); }
+    .facts dl { display: grid; grid-template-columns: 210px 1fr; }
+    .facts dt, .facts dd { padding: 0.85rem 1.25rem; border-top: 1px solid var(--border); font-size: 0.94rem; }
+    .facts dt { color: var(--gold-lt); font-weight: 600; }
+    .facts dd { color: var(--text); }
+    .facts dd span { color: var(--muted); }
+    .facts dl > :nth-child(1), .facts dl > :nth-child(2) { border-top: none; }
+
+    /* ---- Free vs Pro ---- */
+    .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 960px; margin: 0 auto; }
+    .tier { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.4rem; }
+    .tier.pro { border-color: var(--gold); }
+    .tier h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .tier .tag { color: var(--gold-lt); font-size: 0.86rem; font-weight: 600; margin-bottom: 1rem; }
+    .tier ul { list-style: none; display: grid; gap: 0.5rem; }
+    .tier li { color: var(--muted); font-size: 0.92rem; padding-left: 1.1rem; position: relative; }
+    .tier li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .tiers-note { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: 1.2rem; }
+
+    @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .facts dl { grid-template-columns: 1fr; }
+      .facts dd { border-top: none; padding-top: 0; }
+    }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "name": "Equine Companion",
+      "alternateName": [
+        "Equine Companion: Horse Care",
+        "Equine Companion: Horse Care & Records"
+      ],
+      "description": "Equine Companion is a free horse care app for iPhone, iPad and Android. Keep health records, farrier and vaccine reminders, Coggins and other documents, tack and costs, with shareable vet reports. No account, no ads, no subscription. Pro is a one-time $9.99.",
+      "url": "https://taur-dev.github.io/equine/",
+      "image": "https://taur-dev.github.io/icons/equine.png",
+      "operatingSystem": "iOS 15.1 or later, Android",
+      "applicationCategory": "LifestyleApplication",
+      "isAccessibleForFree": true,
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Equine Companion (free)",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Equine Companion Pro, one-time purchase",
+          "price": "9.99",
+          "priceCurrency": "USD"
+        }
+      ],
+      "downloadUrl": [
+        "https://apps.apple.com/us/app/equine-companion/id6770340359",
+        "https://play.google.com/store/apps/details?id=com.taurstudions.equinecompanion"
+      ],
+      "sameAs": [
+        "https://apps.apple.com/us/app/equine-companion/id6770340359",
+        "https://play.google.com/store/apps/details?id=com.taurstudions.equinecompanion"
+      ],
+      "screenshot": [
+        "https://taur-dev.github.io/equine/screens/equine-home.webp",
+        "https://taur-dev.github.io/equine/screens/equine-horse-detail.webp",
+        "https://taur-dev.github.io/equine/screens/equine-health.webp",
+        "https://taur-dev.github.io/equine/screens/equine-training.webp",
+        "https://taur-dev.github.io/equine/screens/equine-competition.webp",
+        "https://taur-dev.github.io/equine/screens/equine-budget.webp",
+        "https://taur-dev.github.io/equine/screens/equine-gallery.webp",
+        "https://taur-dev.github.io/equine/screens/equine-knowledge-base.webp"
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "Taur Studios",
+        "url": "https://taur-dev.github.io/",
+        "email": "taurstudios@gmail.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Taur Studios",
+        "url": "https://taur-dev.github.io/",
+        "email": "taurstudios@gmail.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Equine Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Equine Companion is a private horse care and record-keeping app for iPhone, iPad and Android. It keeps health records, farrier, vaccine and deworming reminders, documents like Coggins papers, tack, feed and costs for every horse, and makes shareable PDF reports for your vet. Everything is stored on your device, and there's no account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a horse care app without a subscription?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, this is one. Equine Companion is free to download and use, with no time limit and unlimited horses. The optional Pro unlock is a one-time purchase ($9.99 in the US). There are no monthly or yearly fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's free and what's in Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free covers everyday horse keeping: unlimited horses, health records, reminders, the document vault, photos, tack room, budget, feed, PDF reports and encrypted backup. Pro adds GPS ride tracking, training and competition logs, a breeding module, and trainer mode for clients and lessons."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it remind me about the farrier, vaccines and deworming?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Set recurring or one-off reminders for farrier visits, vaccinations, deworming and vet checks. They're local notifications, so they work without signal, and you can export them to your phone's calendar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I keep Coggins papers and vet records in the app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The document vault holds Coggins tests, registration papers, bills of sale and any PDF, next to the horse they belong to. Health records cover vaccinations, deworming, vet visits, dental and lab results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I share a horse's records with my vet or a new owner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Make a PDF horse report, choose what goes in it, and share it however you like. Nothing passes through a server on the way."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it track my rides?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, with Pro. GPS ride tracking records your route, distance and the weather for each ride, and the training log keeps sessions and goals for each horse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work for trainers and barns with lots of horses?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Horse profiles are unlimited in the free version. Pro adds trainer mode for clients, students, lessons, scheduling, services and income, plus competition and breeding records."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to create an account?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is my data stored, and can I move it to a new phone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your records are stored only on your phone or tablet, not on a server. Use the encrypted backup to save everything, photos included, and restore it on your new device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work without internet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It only goes online for optional, feature-tied things: map tiles when you track a ride, a weather forecast if you turn weather on (your approximate location goes to Open-Meteo, which doesn't keep it), voice-to-text if you use it, and checking a Pro purchase with the app store."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it available on iPhone and Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It's on the App Store for iPhone and iPad, and on Google Play for Android."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who makes Equine Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I do. I'm Taur, and Taur Studios is my one-person studio. I grew up around horses and built this because no app got privacy and breadth right at the same time. I also make Flock, Goat and Homestead Companion. Questions and ideas go to taurstudios@gmail.com."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -252,6 +453,34 @@
     </div>
   </header>
 
+
+  <!-- At a glance: plain facts, for people and for search/AI assistants -->
+  <section id="facts">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Equine Companion at a glance</h2>
+        <p>The short version, in plain terms.</p>
+      </div>
+      <div class="facts">
+        <dl>
+          <dt>What it is</dt><dd>A private horse care and record-keeping app for owners, riders, trainers and barns: health records, reminders, documents, tack, costs and shareable vet reports.</dd>
+          <dt>Horses</dt><dd>Unlimited horse profiles, free</dd>
+          <dt>Platforms</dt><dd>iPhone and iPad (iOS 15.1 or later) and Android</dd>
+          <dt>Price</dt><dd>Free to download and use. Optional Pro unlock: <strong>$9.99, one time</strong> (US price). <span>No subscription. Family Sharing supported on iPhone.</span></dd>
+          <dt>Account</dt><dd>None. No sign-up, email or password.</dd>
+          <dt>Where your data lives</dt><dd>On your phone or tablet only. No cloud, no server, no sync.</dd>
+          <dt>Ads &amp; tracking</dt><dd>None. No ads, no analytics or tracking SDKs.</dd>
+          <dt>Works offline</dt><dd>Yes. Reminders are local notifications, so they work without signal at the barn.</dd>
+          <dt>Network use</dt><dd>Only optional, feature-tied things: map tiles for GPS ride tracking, a forecast if you turn weather on <span>(your approximate location goes to Open-Meteo, which doesn't keep it)</span>, voice-to-text if you use it, and checking a Pro purchase with the app store.</dd>
+          <dt>Backups</dt><dd>Encrypted backup and restore, including photos, and moving your records to a new phone.</dd>
+          <dt>Made by</dt><dd>Taur Studios, a one-person indie studio. Also makes Flock, Goat and Homestead Companion.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
   <!-- Showcase -->
   <section class="showcase">
     <div class="wrap">
@@ -299,7 +528,7 @@
         </div>
         <div class="feat">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 16l3-4 3 2 4-6"/></svg></div>
-          <h3>Training & ride log</h3>
+          <h3>Training &amp; ride log (Pro)</h3>
           <p>Record sessions, progress, and goals so you can see how each horse is coming along over time.</p>
         </div>
         <div class="feat">
@@ -316,13 +545,57 @@
     </div>
   </section>
 
+
+  <!-- Free vs Pro -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Free for every horse you own. Pro if you ride, compete or train.</h2>
+        <p>The free version isn't a trial. It's the complete record-keeping app, with unlimited horses, no time limit and no account.</p>
+      </div>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free</h3>
+          <div class="tag">Free forever</div>
+          <ul>
+            <li>Unlimited horse profiles: photos, breed, age, colour, markings and microchip</li>
+            <li>Health records: vaccinations, deworming, vet visits, dental and lab results</li>
+            <li>Reminders for the farrier, vaccines, deworming and vet checks, with calendar (.ics) export</li>
+            <li>Document vault for Coggins tests, registration papers, bills of sale and any PDF</li>
+            <li>Photo gallery by horse and album</li>
+            <li>Tack room for saddles, bridles, blankets and gear</li>
+            <li>PDF horse reports to share with your vet, farrier or trainer</li>
+            <li>Budget tracker: expenses and income per horse, with reports</li>
+            <li>Feed inventory with low-stock reminders</li>
+            <li>Vital signs, a per-horse health score, journal and contacts</li>
+            <li>An offline equine knowledge base</li>
+            <li>Voice-to-text notes, and Face ID or Touch ID lock</li>
+            <li>Encrypted backup and restore</li>
+          </ul>
+        </div>
+        <div class="tier pro">
+          <h3>Pro</h3>
+          <div class="tag">$9.99, one time (US)</div>
+          <ul>
+            <li>GPS ride tracking with route maps, distance and the weather for each ride</li>
+            <li>Training log: sessions, goals and progress for each horse</li>
+            <li>Competition log: discipline, division, placing, score and prize money</li>
+            <li>Breeding module: heat cycles, teasing, breedings, ultrasounds, foaling and stallion records</li>
+            <li>Trainer mode: clients, students, lessons, schedule, services and income across boarding, training, grooming and hauling</li>
+          </ul>
+        </div>
+      </div>
+      <p class="tiers-note">The store shows your local price. Pro is a one-time purchase, not a subscription.</p>
+    </div>
+  </section>
+
   <!-- Privacy band -->
   <section class="privacy">
     <div class="wrap">
       <div>
         <h2>Your data stays on your device. Full stop.</h2>
         <p>Most apps in this space want an account, then quietly use your data to sell ads. Equine Companion does the opposite — it's built privacy-first, by one person, because your horses' records are yours.</p>
-        <p>There's no sign-up and no server holding your information. The app works fully offline; the only optional outbound call is weather, and it sends no personal data.</p>
+        <p>There's no sign-up and no server holding your information. The app works fully offline. It only goes online for optional, feature-tied things: map tiles when you track a ride, a weather forecast if you turn it on (approximate location to Open-Meteo, which doesn't keep it), voice-to-text if you use it, and checking a Pro purchase.</p>
       </div>
       <ul class="promise-list">
         <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No account required.</strong> Open the app and start — nothing to sign up for.</span></li>
@@ -339,28 +612,56 @@
       <div class="section-head"><h2>Questions, answered</h2></div>
       <div class="faq-list">
         <details open>
-          <summary>How much does it cost? <span class="plus">+</span></summary>
-          <p>Equine Companion is free to download and use on both the App Store and Google Play. An optional one-time Pro unlock adds extra features if you want them — there's no subscription.</p>
+          <summary>What is Equine Companion? <span class="plus">+</span></summary>
+          <p>Equine Companion is a private horse care and record-keeping app for iPhone, iPad and Android. It keeps health records, farrier, vaccine and deworming reminders, documents like Coggins papers, tack, feed and costs for every horse, and makes shareable PDF reports for your vet. Everything is stored on your device, and there's no account.</p>
+        </details>
+        <details>
+          <summary>Is there a horse care app without a subscription? <span class="plus">+</span></summary>
+          <p>Yes, this is one. Equine Companion is free to download and use, with no time limit and unlimited horses. The optional Pro unlock is a one-time purchase ($9.99 in the US). There are no monthly or yearly fees.</p>
+        </details>
+        <details>
+          <summary>What's free and what's in Pro? <span class="plus">+</span></summary>
+          <p>Free covers everyday horse keeping: unlimited horses, health records, reminders, the document vault, photos, tack room, budget, feed, PDF reports and encrypted backup. Pro adds GPS ride tracking, training and competition logs, a breeding module, and trainer mode for clients and lessons.</p>
+        </details>
+        <details>
+          <summary>Can it remind me about the farrier, vaccines and deworming? <span class="plus">+</span></summary>
+          <p>Yes. Set recurring or one-off reminders for farrier visits, vaccinations, deworming and vet checks. They're local notifications, so they work without signal, and you can export them to your phone's calendar.</p>
+        </details>
+        <details>
+          <summary>Can I keep Coggins papers and vet records in the app? <span class="plus">+</span></summary>
+          <p>Yes. The document vault holds Coggins tests, registration papers, bills of sale and any PDF, next to the horse they belong to. Health records cover vaccinations, deworming, vet visits, dental and lab results.</p>
+        </details>
+        <details>
+          <summary>Can I share a horse's records with my vet or a new owner? <span class="plus">+</span></summary>
+          <p>Yes. Make a PDF horse report, choose what goes in it, and share it however you like. Nothing passes through a server on the way.</p>
+        </details>
+        <details>
+          <summary>Can it track my rides? <span class="plus">+</span></summary>
+          <p>Yes, with Pro. GPS ride tracking records your route, distance and the weather for each ride, and the training log keeps sessions and goals for each horse.</p>
+        </details>
+        <details>
+          <summary>Does it work for trainers and barns with lots of horses? <span class="plus">+</span></summary>
+          <p>Yes. Horse profiles are unlimited in the free version. Pro adds trainer mode for clients, students, lessons, scheduling, services and income, plus competition and breeding records.</p>
         </details>
         <details>
           <summary>Do I need to create an account? <span class="plus">+</span></summary>
           <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
         </details>
         <details>
-          <summary>Where is my data stored? <span class="plus">+</span></summary>
-          <p>Entirely on your phone or tablet. There's no Taur Studios server holding your horses' information, so there's nothing to be breached or sold.</p>
-        </details>
-        <details>
-          <summary>Can I manage more than one horse? <span class="plus">+</span></summary>
-          <p>Yes — keep as many horses as you like, each with its own profile, health history, documents, and training log. It's built for owners, trainers, and barns managing several.</p>
-        </details>
-        <details>
-          <summary>Can I move my data to a new phone? <span class="plus">+</span></summary>
-          <p>Because everything lives on-device, you control your data. The app includes the tools you need to keep and move your records — no cloud account required.</p>
+          <summary>Where is my data stored, and can I move it to a new phone? <span class="plus">+</span></summary>
+          <p>Your records are stored only on your phone or tablet, not on a server. Use the encrypted backup to save everything, photos included, and restore it on your new device.</p>
         </details>
         <details>
           <summary>Does it work without internet? <span class="plus">+</span></summary>
-          <p>Yes. The app is fully usable offline. The only optional online feature is weather, which sends no personal information.</p>
+          <p>Yes. It only goes online for optional, feature-tied things: map tiles when you track a ride, a weather forecast if you turn weather on (your approximate location goes to Open-Meteo, which doesn't keep it), voice-to-text if you use it, and checking a Pro purchase with the app store.</p>
+        </details>
+        <details>
+          <summary>Is it available on iPhone and Android? <span class="plus">+</span></summary>
+          <p>Yes. It's on the App Store for iPhone and iPad, and on Google Play for Android.</p>
+        </details>
+        <details>
+          <summary>Who makes Equine Companion? <span class="plus">+</span></summary>
+          <p>I do. I'm Taur, and Taur Studios is my one-person studio. I grew up around horses and built this because no app got privacy and breadth right at the same time. I also make Flock, Goat and Homestead Companion. Questions and ideas go to taurstudios@gmail.com.</p>
         </details>
       </div>
     </div>
@@ -389,6 +690,8 @@
     <div class="wrap">
       <a href="../index.html">All Taur Studios apps</a>
       <a href="../flock/index.html">Flock Companion</a>
+      <a href="../goat/index.html">Goat Companion</a>
+      <a href="../homestead/index.html">Homestead Companion</a>
       <a href="https://taur-dev.github.io/legal/index.html" target="_blank" rel="noopener">Privacy &amp; Legal</a>
       <a href="https://taur-dev.github.io/legal/support.html" target="_blank" rel="noopener">Support</a>
       <a href="mailto:taurstudios@gmail.com">Contact</a>

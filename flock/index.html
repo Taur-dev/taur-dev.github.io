@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flock Companion — Your whole flock, private and on your device</title>
-  <meta name="description" content="Flock Companion tracks every bird, egg, and hatch for backyard chicken, duck, quail, and turkey keepers — health, egg withdrawal, incubation, and finances, all kept on your device. No accounts, no ads, no tracking. Free on iOS and Android." />
+  <title>Flock Companion: private chicken &amp; egg tracker app for iPhone and Android</title>
+  <meta name="description" content="Flock Companion is a free backyard chicken and poultry app for iPhone, iPad and Android. Track eggs, bird health, medications with egg-withdrawal countdowns, coop, feed and hatching. No account, no ads, no subscription. Pro is a one-time $9.99." />
+  <link rel="canonical" href="https://taur-dev.github.io/flock/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Flock Companion" />
@@ -203,7 +204,206 @@
       .hero-art .p1, .hero-art .p3 { display: none; }
       .hero-art .p2 { width: 230px; margin: 0; transform: none; }
     }
+
+    /* ---- At a glance (fact sheet) ---- */
+    .facts { max-width: 860px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); }
+    .facts dl { display: grid; grid-template-columns: 210px 1fr; }
+    .facts dt, .facts dd { padding: 0.85rem 1.25rem; border-top: 1px solid var(--border); font-size: 0.94rem; }
+    .facts dt { color: var(--gold-lt); font-weight: 600; }
+    .facts dd { color: var(--text); }
+    .facts dd span { color: var(--muted); }
+    .facts dl > :nth-child(1), .facts dl > :nth-child(2) { border-top: none; }
+
+    /* ---- Free vs Pro ---- */
+    .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 960px; margin: 0 auto; }
+    .tier { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.4rem; }
+    .tier.pro { border-color: var(--gold); }
+    .tier h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .tier .tag { color: var(--gold-lt); font-size: 0.86rem; font-weight: 600; margin-bottom: 1rem; }
+    .tier ul { list-style: none; display: grid; gap: 0.5rem; }
+    .tier li { color: var(--muted); font-size: 0.92rem; padding-left: 1.1rem; position: relative; }
+    .tier li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .tiers-note { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: 1.2rem; }
+
+    @media (max-width: 860px) { .tiers { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .facts dl { grid-template-columns: 1fr; }
+      .facts dd { border-top: none; padding-top: 0; }
+    }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "name": "Flock Companion",
+      "alternateName": [
+        "Flock Companion: Chickens",
+        "Flock Companion: Poultry Logs"
+      ],
+      "description": "Flock Companion is a free backyard chicken and poultry app for iPhone, iPad and Android. Track eggs, bird health, medications with egg-withdrawal countdowns, coop, feed and hatching. No account, no ads, no subscription. Pro is a one-time $9.99.",
+      "url": "https://taur-dev.github.io/flock/",
+      "image": "https://taur-dev.github.io/icons/flock.png",
+      "operatingSystem": "iOS 15.1 or later, Android",
+      "applicationCategory": "LifestyleApplication",
+      "isAccessibleForFree": true,
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Flock Companion (free)",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Flock Companion Pro, one-time purchase",
+          "price": "9.99",
+          "priceCurrency": "USD"
+        }
+      ],
+      "downloadUrl": [
+        "https://apps.apple.com/us/app/flock-companion/id6776736483",
+        "https://play.google.com/store/apps/details?id=com.taurstudios.flockcompanion"
+      ],
+      "sameAs": [
+        "https://apps.apple.com/us/app/flock-companion/id6776736483",
+        "https://play.google.com/store/apps/details?id=com.taurstudios.flockcompanion"
+      ],
+      "screenshot": [
+        "https://taur-dev.github.io/flock/screens/flock-home.webp",
+        "https://taur-dev.github.io/flock/screens/flock-eggs.webp",
+        "https://taur-dev.github.io/flock/screens/flock-bird.webp",
+        "https://taur-dev.github.io/flock/screens/flock-hatchery.webp",
+        "https://taur-dev.github.io/flock/screens/flock-financial.webp",
+        "https://taur-dev.github.io/flock/screens/flock-knowledge.webp",
+        "https://taur-dev.github.io/flock/screens/flock-settings.webp"
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "Taur Studios",
+        "url": "https://taur-dev.github.io/",
+        "email": "taurstudios@gmail.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Taur Studios",
+        "url": "https://taur-dev.github.io/",
+        "email": "taurstudios@gmail.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Flock Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Flock Companion is a private flock-management app for backyard poultry keepers, on iPhone, iPad and Android. It tracks your birds, daily egg collection, health and medications (with egg-withdrawal countdowns), coop, feed and tasks. Pro adds incubation and hatching. Everything is stored on your device, and there's no account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a chicken-keeping app without a subscription?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, this is one. Flock Companion is free to download and use, with no time limit. The optional Pro unlock is a one-time purchase ($9.99 in the US). There are no monthly or yearly fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which birds does it support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chickens, ducks, quail, turkeys, guinea fowl, geese, pigeons, peafowl, doves and pheasants, with breeds and egg colours built in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's free and what's in Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free covers day-to-day keeping: unlimited birds, egg logging with 7- and 30-day charts, health and medication records, egg-withdrawal countdowns, coop, feed, tasks, PDF bird reports, the journal, document vault and knowledge base. Pro adds the hatchery (incubation and hatching), breeding records, 90-day and year-over-year egg trends, financial reports with cost per egg, journal photos and CSV export."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I track egg production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Log each day's collection in a few taps, with count, colour, size and notes. You get production charts, lay rate, and an egg inventory showing what was sold, used or given away."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is egg withdrawal tracking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When you give a bird medication, eggs often shouldn't be eaten for a set period afterward. Log the medication and Flock Companion counts down that withdrawal window for you, so you never eat an egg you shouldn't."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it track incubation and hatching?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, with Pro. Set up an incubation batch and Flock Companion follows it from set through lockdown to hatch day, with a countdown for each stage, then records how the hatch went."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it tell me whether my flock pays for itself?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Log feed, supplies and other costs alongside egg sales and other income, and the free version keeps running totals. Pro adds full financial reports, P&L summaries and cost per egg."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to create an account?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is my data stored, and what if I get a new phone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your records are stored only on your phone or tablet, not on a server. To move to a new phone, export a backup file from Settings and restore it on the new device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work without internet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, fully. It only goes online for three optional things: checking a Pro purchase with the app store, a weather forecast if you turn weather on (your approximate location goes to Open-Meteo, which doesn't keep it), and voice-to-text if you use it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it available on iPhone and Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It's on the App Store for iPhone and iPad, and on Google Play for Android."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who makes Flock Companion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I do. I'm Taur, and Taur Studios is my one-person studio. I build private, no-account apps for people who keep animals, including Equine Companion, Goat Companion and Homestead Companion. Questions and ideas go to taurstudios@gmail.com."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -252,6 +452,34 @@
     </div>
   </header>
 
+
+  <!-- At a glance: plain facts, for people and for search/AI assistants -->
+  <section id="facts">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Flock Companion at a glance</h2>
+        <p>The short version, in plain terms.</p>
+      </div>
+      <div class="facts">
+        <dl>
+          <dt>What it is</dt><dd>A flock-management app for backyard poultry keepers: egg logs, bird health and medications, coop, feed, tasks and hatching.</dd>
+          <dt>Birds</dt><dd>Chickens, ducks, quail, turkeys, guinea fowl, geese, pigeons, peafowl, doves and pheasants</dd>
+          <dt>Platforms</dt><dd>iPhone and iPad (iOS 15.1 or later) and Android</dd>
+          <dt>Price</dt><dd>Free to download and use. Optional Pro unlock: <strong>$9.99, one time</strong> (US price). <span>No subscription.</span></dd>
+          <dt>Account</dt><dd>None. No sign-up, email or password.</dd>
+          <dt>Where your data lives</dt><dd>On your phone or tablet only. No cloud, no server, no sync.</dd>
+          <dt>Ads &amp; tracking</dt><dd>None. No ads, no analytics or tracking SDKs.</dd>
+          <dt>Works offline</dt><dd>Yes, fully.</dd>
+          <dt>Network use</dt><dd>Only three optional, feature-tied things: checking a Pro purchase with the app store, a local forecast if you turn weather on <span>(your approximate location goes to Open-Meteo, which doesn't keep it)</span>, and voice-to-text if you use it <span>(handled by your phone's built-in speech recognition)</span>.</dd>
+          <dt>Backups</dt><dd>Export a backup file and restore it on a new phone.</dd>
+          <dt>Made by</dt><dd>Taur Studios, a one-person indie studio. Also makes Equine, Goat and Homestead Companion.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
   <!-- Showcase -->
   <section class="showcase">
     <div class="wrap">
@@ -284,7 +512,7 @@
         <div class="feat">
           <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="6" ry="8"/></svg></div>
           <h3>Egg logging & trends</h3>
-          <p>Tap in today's eggs and watch 30- and 90-day production charts so you can spot a slow week before it becomes a problem.</p>
+          <p>Tap in today's eggs and watch 7- and 30-day production charts so you can spot a slow week before it becomes a problem. Pro adds 90-day and year-over-year trends.</p>
         </div>
         <div class="feat">
           <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg></div>
@@ -298,7 +526,7 @@
         </div>
         <div class="feat">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6c0 4-6 12-6 12S6 13 6 9a6 6 0 0 1 6-6z"/></svg></div>
-          <h3>Incubation & hatching</h3>
+          <h3>Incubation &amp; hatching (Pro)</h3>
           <p>Track an incubation batch from set through lockdown to hatch day, with the countdowns that keep a hatch on schedule.</p>
         </div>
         <div class="feat">
@@ -315,13 +543,57 @@
     </div>
   </section>
 
+
+  <!-- Free vs Pro -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Free for everyday keeping. Pro if you hatch or sell.</h2>
+        <p>The free version isn't a trial. It's the complete daily app, with no time limit and no account.</p>
+      </div>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free</h3>
+          <div class="tag">Free forever</div>
+          <ul>
+            <li>Unlimited flocks and birds, with a profile per bird: breed, hatch date, egg colour, markings and photo</li>
+            <li>Daily egg log (count, colour, size, notes) with 7- and 30-day production charts</li>
+            <li>Egg inventory: what was sold, used or given away</li>
+            <li>Health events, medications and vaccinations, with egg-withdrawal countdowns</li>
+            <li>Vital signs, molt and brooding tracking, and a flock health score</li>
+            <li>Health-check reminders and recurring task reminders</li>
+            <li>Coop profiles, maintenance logs, and feed inventory with low-stock alerts</li>
+            <li>Shareable PDF bird reports for your vet or a new owner</li>
+            <li>Contacts, document vault, photo albums, journal and an offline poultry knowledge base</li>
+            <li>Expense and income running totals</li>
+            <li>App Lock with biometrics or your device passcode</li>
+          </ul>
+        </div>
+        <div class="tier pro">
+          <h3>Pro</h3>
+          <div class="tag">$9.99, one time (US)</div>
+          <ul>
+            <li>Hatchery: incubation batches from set to hatch, with lockdown and hatch-day countdowns</li>
+            <li>Breeding pairs and breeding cycles</li>
+            <li>90-day lay-rate trends and year-over-year comparisons</li>
+            <li>Egg sales income, financial reports, P&amp;L summaries and cost per egg</li>
+            <li>Annual feed spend broken down by feed type</li>
+            <li>Photos on journal entries</li>
+            <li>Full data export to CSV</li>
+          </ul>
+        </div>
+      </div>
+      <p class="tiers-note">The store shows your local price. Pro is a one-time purchase, not a subscription.</p>
+    </div>
+  </section>
+
   <!-- Privacy band -->
   <section class="privacy">
     <div class="wrap">
       <div>
         <h2>Your flock's records stay on your device. Full stop.</h2>
         <p>Most apps in this space want an account, then quietly use your data to sell ads. Flock Companion does the opposite — it's built privacy-first, by one person, because what's in your coop is your business.</p>
-        <p>There's no sign-up and no server holding your information. The app works fully offline; the only optional outbound call is weather, and it sends no personal data.</p>
+        <p>There's no sign-up and no server holding your information. The app works fully offline. It only goes online for three optional things: checking a Pro purchase, a weather forecast if you turn it on (approximate location to Open-Meteo, which doesn't keep it), and voice-to-text if you use it.</p>
       </div>
       <ul class="promise-list">
         <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <span><strong>No account required.</strong> Open the app and start — nothing to sign up for.</span></li>
@@ -338,28 +610,56 @@
       <div class="section-head"><h2>Questions, answered</h2></div>
       <div class="faq-list">
         <details open>
+          <summary>What is Flock Companion? <span class="plus">+</span></summary>
+          <p>Flock Companion is a private flock-management app for backyard poultry keepers, on iPhone, iPad and Android. It tracks your birds, daily egg collection, health and medications (with egg-withdrawal countdowns), coop, feed and tasks. Pro adds incubation and hatching. Everything is stored on your device, and there's no account.</p>
+        </details>
+        <details>
+          <summary>Is there a chicken-keeping app without a subscription? <span class="plus">+</span></summary>
+          <p>Yes, this is one. Flock Companion is free to download and use, with no time limit. The optional Pro unlock is a one-time purchase ($9.99 in the US). There are no monthly or yearly fees.</p>
+        </details>
+        <details>
           <summary>Which birds does it support? <span class="plus">+</span></summary>
-          <p>Backyard poultry of all kinds — chickens, ducks, quail, and turkeys — with breeds and egg colors built in so your records look right from day one.</p>
+          <p>Chickens, ducks, quail, turkeys, guinea fowl, geese, pigeons, peafowl, doves and pheasants, with breeds and egg colours built in.</p>
         </details>
         <details>
-          <summary>How much does it cost? <span class="plus">+</span></summary>
-          <p>Flock Companion is free to download and use on both the App Store and Google Play. An optional one-time Pro unlock adds features like hatchery tracking and flock finances — there's no subscription.</p>
+          <summary>What's free and what's in Pro? <span class="plus">+</span></summary>
+          <p>Free covers day-to-day keeping: unlimited birds, egg logging with 7- and 30-day charts, health and medication records, egg-withdrawal countdowns, coop, feed, tasks, PDF bird reports, the journal, document vault and knowledge base. Pro adds the hatchery (incubation and hatching), breeding records, 90-day and year-over-year egg trends, financial reports with cost per egg, journal photos and CSV export.</p>
         </details>
         <details>
-          <summary>Do I need to create an account? <span class="plus">+</span></summary>
-          <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
+          <summary>Can I track egg production? <span class="plus">+</span></summary>
+          <p>Yes. Log each day's collection in a few taps, with count, colour, size and notes. You get production charts, lay rate, and an egg inventory showing what was sold, used or given away.</p>
         </details>
         <details>
           <summary>What is egg withdrawal tracking? <span class="plus">+</span></summary>
           <p>When you give a bird medication, eggs often shouldn't be eaten for a set period afterward. Log the medication and Flock Companion counts down that withdrawal window for you, so you never eat an egg you shouldn't.</p>
         </details>
         <details>
-          <summary>Where is my data stored? <span class="plus">+</span></summary>
-          <p>Entirely on your phone or tablet. There's no Taur Studios server holding your flock's information, so there's nothing to be breached or sold.</p>
+          <summary>Can it track incubation and hatching? <span class="plus">+</span></summary>
+          <p>Yes, with Pro. Set up an incubation batch and Flock Companion follows it from set through lockdown to hatch day, with a countdown for each stage, then records how the hatch went.</p>
+        </details>
+        <details>
+          <summary>Can it tell me whether my flock pays for itself? <span class="plus">+</span></summary>
+          <p>Log feed, supplies and other costs alongside egg sales and other income, and the free version keeps running totals. Pro adds full financial reports, P&amp;L summaries and cost per egg.</p>
+        </details>
+        <details>
+          <summary>Do I need to create an account? <span class="plus">+</span></summary>
+          <p>No. There's no sign-up, no email, no password. You open the app and your records live on your device from the first tap.</p>
+        </details>
+        <details>
+          <summary>Where is my data stored, and what if I get a new phone? <span class="plus">+</span></summary>
+          <p>Your records are stored only on your phone or tablet, not on a server. To move to a new phone, export a backup file from Settings and restore it on the new device.</p>
         </details>
         <details>
           <summary>Does it work without internet? <span class="plus">+</span></summary>
-          <p>Yes. The app is fully usable offline. The only optional online feature is weather, which sends no personal information.</p>
+          <p>Yes, fully. It only goes online for three optional things: checking a Pro purchase with the app store, a weather forecast if you turn weather on (your approximate location goes to Open-Meteo, which doesn't keep it), and voice-to-text if you use it.</p>
+        </details>
+        <details>
+          <summary>Is it available on iPhone and Android? <span class="plus">+</span></summary>
+          <p>Yes. It's on the App Store for iPhone and iPad, and on Google Play for Android.</p>
+        </details>
+        <details>
+          <summary>Who makes Flock Companion? <span class="plus">+</span></summary>
+          <p>I do. I'm Taur, and Taur Studios is my one-person studio. I build private, no-account apps for people who keep animals, including Equine Companion, Goat Companion and Homestead Companion. Questions and ideas go to taurstudios@gmail.com.</p>
         </details>
       </div>
     </div>
@@ -388,6 +688,8 @@
     <div class="wrap">
       <a href="../index.html">All Taur Studios apps</a>
       <a href="../equine/index.html">Equine Companion</a>
+      <a href="../goat/index.html">Goat Companion</a>
+      <a href="../homestead/index.html">Homestead Companion</a>
       <a href="https://taur-dev.github.io/legal/index.html" target="_blank" rel="noopener">Privacy &amp; Legal</a>
       <a href="https://taur-dev.github.io/legal/support.html" target="_blank" rel="noopener">Support</a>
       <a href="mailto:taurstudios@gmail.com">Contact</a>
